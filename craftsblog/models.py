@@ -14,9 +14,9 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     image_1 = CloudinaryField('image', default='placeholder')
     image_2 = CloudinaryField('image', default='placeholder')
-    excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
+    excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices = STATUS, default=0)
     likes = models.ManyToManyField(
@@ -35,7 +35,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_likes")
-    body = models.TextField()
+    comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
 
@@ -43,18 +43,18 @@ class Comment(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Comment: {self.body}\nBy: {self.user.name}"
+        return f"Comment: {self.comment_body} By: {self.user}"
 
 
 class Message(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="messages")
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_messages")
-    body = models.TextField()
+    message_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)   
     read = models.BooleanField(default=False)   
     
     class meta:
         ordering = ["created_on"]
-
+    
     def __str__(self):
-        return f"Message: {self.body}\nFrom: {self.user.name}"
+        return f"Message: {self.message_body}\nFrom: {self.user}"
