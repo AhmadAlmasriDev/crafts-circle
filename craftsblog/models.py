@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0,"Draft"),(1,"Published"))
-
+CATEGORY = ((0,"Books"),(1,"Lamps"),(2,"Interior"),(3,"Other"))
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -14,6 +14,7 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     image_1 = CloudinaryField('image', default='placeholder')
     image_2 = CloudinaryField('image', default='placeholder')
+    category = models.IntegerField(choices = CATEGORY, default=3)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     excerpt = models.TextField(blank=True)
