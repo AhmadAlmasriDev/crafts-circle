@@ -1,18 +1,19 @@
 
 {% for post in post_list %}
         {% if forloop.last %}
-        <li hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed" >
+            <li hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed" >
+            
         
         {% else %}
-        <li>
+            <li>
         {% endif %}
-            <div>
-                <h2>{{post.title}}</h2>
-                <br>
-                <p>{{post.content|striptags|slice:":5"}}</p>
-                <br>
-                <p>{{post.created_on}}</p>
-                <br>
-            </div>
-        </li>
+                <div>
+                    <a href = "{% url 'item' post.slug %}" >{{post.title}}</a>
+                    <br>
+                    <p>{{post.content|striptags|slice:":5"}}</p>
+                    <br>
+                    <p>{{post.created_on}}</p>
+                    <br>
+                </div>
+            </li>
         {% endfor%}
