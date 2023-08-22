@@ -1,7 +1,8 @@
 
 {% for post in post_list %}
         {% if forloop.last %}
-        <li hx-trigger = "revealed" hx-get = "{% url 'home' %}" hx-swap="afterend">
+        <li hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed" >
+        
         {% else %}
         <li>
         {% endif %}
