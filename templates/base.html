@@ -1,0 +1,135 @@
+{% load static %}
+{% load django_htmx %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://kit.fontawesome.com/061a2ef8ba.js" crossorigin="anonymous"></script>
+    <title>Crafts Circle</title>
+    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
+</head>
+
+<body>
+    <header class = "flex-container">
+        <div class = "main-container flex-container">
+            <div class = "nav-container flex-container">
+
+                <nav id = "bar-menu" class="navigation flex-container ">
+                    <ul class="flex-container">
+                        <li>
+                            <a href="javascript:void(0);" class="icon" onclick="toggleMenu('center-nav-menu'), hideMenu('user-menu')"><i class="fa-solid fa-bars"></i></a>
+
+                        </li>
+                    </ul>
+                </nav>
+                <div class = "logo-container flex-container">
+                    <a id = "logo" class = "flex-container" href="index.html">
+                        <img class = "big-logo" src="assets/images/logo.svg" alt="Crafts Circle logo">
+                        <img class = "small-logo" src="assets/images/logo-s.svg" alt="Crafts Circle logo">
+                    </a>
+                </div>
+                
+                <nav id="center-nav-menu" class="navigation center flex-container display-non">
+                    <ul class ="flex-container">
+                        <li>
+                            <a class="link" href="#">Home</a>
+                        </li>
+                        <li>
+                            <a class="link" href="#">About</a>
+                        </li>
+                        <li>
+                            <a class="link" href="#">Contact</a>
+                        </li>
+                        <li class="search-box">
+                            <form name="search">
+                                <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
+                            </form>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </li>        
+                        
+                    </ul>
+                </nav>
+                
+                <nav id="right-nav-menu" class="navigation right flex-container">
+                    <ul class ="flex-container">
+                        <li class=" search-box ">
+                            <form name="search">
+                                <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
+                            </form>
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                            <!-- <a href="javascript:void(0);" class="icon user-menu" onclick="hideMenu()"><i class="fa-regular fa-user"></i></a> -->
+                            <div id="user-menu" class="drop-down-container display-non">
+                                <ul class="user-drop-down v-flex-container">
+                                    <li>
+                                        <span id="user-menu-name">name</span>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <a class="link" href="">Login / register</a>
+                                    </li>
+                                    <li>
+                                        <a class="link" href="">Add Item</a>
+                                    </li>
+                                    <li>
+                                        <a class="link" href="">Favorites</a>
+                                    </li>
+                                    <li>
+                                        <a class="link" href="">My Page</a>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <a class="link" href="">Log Out</a>
+                                    </li>
+                                </ul>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+    </header>
+    <main class="flex-container">
+        {% block content %}
+            <!-- Content Goes here -->
+        {% endblock content %}
+    </main>
+    <footer class="flex-container">
+        <div class="copy-info">
+            <p>Powered by me</p>
+            <p>2023</p>
+        </div>
+        <div class="main-container flex-container">
+            <ul class="social-media  flex-container">
+                <li class="media-link flex-container">
+                    <a href=""><i class="fa-brands fa-facebook "></i></a>
+                </li>
+                <li class="media-link flex-container">
+                    <a href=""><i class="fa-brands fa-twitter"></i></a>
+                </li>
+                <li class="media-link flex-container">
+                    <a href=""><i class="fa-brands fa-instagram"></i></a>
+                </li>
+                <li class="media-link flex-container">
+                    <a href=""><i class="fa-brands fa-youtube"></i></a>
+            </ul>
+        </div>
+        
+    </footer>
+
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/slider.js"></script>
+</body>
+
+</html>
