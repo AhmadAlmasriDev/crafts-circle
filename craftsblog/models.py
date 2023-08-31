@@ -32,6 +32,9 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    def most_liked(self):
+        return self.annotate(num_likes=Count('likes')).order_by('num_likes')
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")

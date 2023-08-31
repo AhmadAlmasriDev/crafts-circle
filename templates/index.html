@@ -1,610 +1,167 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/index.css">
-    <script src="https://kit.fontawesome.com/061a2ef8ba.js" crossorigin="anonymous"></script>
-    <title>Crafts Circle</title>
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-</head>
-
-<body>
-    <header class = "flex-container">
-        <div class = "main-container flex-container">
-            <div class = "nav-container flex-container">
-
-                <nav id = "bar-menu" class="navigation flex-container ">
-                    <ul class="flex-container">
-                        <li>
-                            <a href="javascript:void(0);" class="icon" onclick="toggleMenu('center-nav-menu'), hideMenu('user-menu')"><i class="fa-solid fa-bars"></i></a>
-
-                        </li>
-                    </ul>
-                </nav>
-                <div class = "logo-container flex-container">
-                    <a id = "logo" class = "flex-container" href="index.html">
-                        <img class = "big-logo" src="assets/images/logo.svg" alt="Crafts Circle logo">
-                        <img class = "small-logo" src="assets/images/logo-s.svg" alt="Crafts Circle logo">
-                    </a>
+{% block content %}
+<section id="hero-section" class="main-container">
+    <div class="slideshow-container v-flex-container">
+        <!-- Slideshow container -->
+        <div class="slideshow">
+            <!-- Full-width images with number and caption text -->
+            <div class="my-slides fade">
+                <div class="image-container">
+                    <img src="{% static 'images/test-1.jpg' %}" >
                 </div>
-                
-                <nav id="center-nav-menu" class="navigation center flex-container display-non">
-                    <ul class ="flex-container">
-                        <li>
-                            <a class="link" href="#">Home</a>
-                        </li>
-                        <li>
-                            <a class="link" href="#">About</a>
-                        </li>
-                        <li>
-                            <a class="link" href="#">Contact</a>
-                        </li>
-                        <li class="search-box">
-                            <form name="search">
-                                <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
-                            </form>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>        
-                        
-                    </ul>
-                </nav>
-                
-                <nav id="right-nav-menu" class="navigation right flex-container">
-                    <ul class ="flex-container">
-                        <li class=" search-box ">
-                            <form name="search">
-                                <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
-                            </form>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            
-                        </li>
-                        <li>
-                            <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
-                            <!-- <a href="javascript:void(0);" class="icon user-menu" onclick="hideMenu()"><i class="fa-regular fa-user"></i></a> -->
-                            <div id="user-menu" class="drop-down-container display-non">
-                                <ul class="user-drop-down v-flex-container">
-                                    <li>
-                                        <span id="user-menu-name">name</span>
-                                    </li>
-                                    <hr>
-                                    <li>
-                                        <a class="link" href="">Login / register</a>
-                                    </li>
-                                    <li>
-                                        <a class="link" href="">Add Item</a>
-                                    </li>
-                                    <li>
-                                        <a class="link" href="">Favorites</a>
-                                    </li>
-                                    <li>
-                                        <a class="link" href="">My Page</a>
-                                    </li>
-                                    <hr>
-                                    <li>
-                                        <a class="link" href="">Log Out</a>
-                                    </li>
-                                </ul>
-
-                            </div>
-                        </li>
-
-                    </ul>
-                </nav>
+                <a href="" class="title-container">
+                    <h2>This slide title</h2>
+                    <p>something about this slide</p>
+                </a>
             </div>
-
-        </div>
-    </header>
-    <main class="flex-container">
-
         
-        <section id="hero-section" class="main-container">
-            <div class="slideshow-container v-flex-container">
-                <!-- Slideshow container -->
-                <div class="slideshow">
-                    <!-- Full-width images with number and caption text -->
-                    <div class="my-slides fade">
-                        <div class="image-container">
-                            <img src="assets/images/test-1.jpg" >
-                        </div>
-                        <a href="" class="title-container">
-                            <h2>This slide title</h2>
-                            <p>something about this slide</p>
-                        </a>
-                    </div>
-                
-                    <div class="my-slides fade">
-                        <div class="image-container">
-                            <img src="assets/images/test-2.jpg" >
-                            
-                        </div>
-                        <a href="" class="title-container">
-                            <h2>This slide title</h2>
-                            <p>something about this slide</p>
-                        </a>
-                    </div>
-                
-                    <div class="my-slides fade">
-                        <div class="image-container">
-                            <img src="assets/images/test-3.jpg" >
-                        </div>
-                        <div class="title-container">
-                            <h2>This slide title</h2>
-                            <p>something about this slide</p>
-                        </div>
-                    </div>
-                
-                    <!-- Next and previous buttons -->
-                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+            <div class="my-slides fade">
+                <div class="image-container">
+                    <img src="{% static 'images/test-2.jpg' %}" >
+                    
                 </div>
-                <br>
-                
-                <!-- The dots/circles -->
-                <div class="nav-dots">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
+                <a href="" class="title-container">
+                    <h2>This slide title</h2>
+                    <p>something about this slide</p>
+                </a>
+            </div>
+        
+            <div class="my-slides fade">
+                <div class="image-container">
+                    <img src="{% static 'images/test-3.jpg' %}" >
+                </div>
+                <div class="title-container">
+                    <h2>This slide title</h2>
+                    <p>something about this slide</p>
                 </div>
             </div>
+        
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        
+        <!-- The dots/circles -->
+        <div class="nav-dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
 
-        </section>
+</section>
 
-        <section id = "items"  class="main-container flex-container">
-            <div class="main-panel v-flex-container">
-                <div class="most-view item-container">
-                    <!-- <h2 class = "section-title">Most Viewed</h2> -->
-                    <a href="">
-                        <div class="most-view-title">
-                            <h2>title</h2>
-                        </div>
-                    </a>
-                    <a href="">
-                        <div class="image-container most-view-image">
-                            <h3 id="item-category">category</h3>
-                            <img src="assets/images/image-1.jpg" alt="">
-                        </div>
-                    </a>
-                    
-                    <a href="">
+<section id = "items"  class="main-container flex-container">
+    <div class="main-panel v-flex-container">
+        <div class="most-view item-container">
+            <!-- <h2 class = "section-title">Most Viewed</h2> -->
+            <a href="">
+                <div class="most-view-title">
+                    <h2>title</h2>
+                </div>
+            </a>
+            <a href="">
+                <div class="image-container most-view-image">
+                    <h3 id="item-category">category</h3>
+                    <img src="{% static 'images/image-1.jpg' %}" alt="">
+                </div>
+            </a>
+            
+            <a href="">
+                
+                <div class="most-view-sub">
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
+                </div>
+            </a>
+            <div class="item-user-info flex-container">
+                <div>
+                    <p><span class="user-name">John Dou</span></p>
+                    <p><span class="creation-date">19 SEP 2023</span></p>
+                </div>
+                <div class="item-user-interaction flex-container">
+                    <div class="item-likes">
+                        <p>
+                            <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
+                        </p>
+                    </div>
+                    <div class="item-comments">
+                        <p>
+                            <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="all-items-container">
+            <!-- <h2 class = "section-title">Items</h2> -->
+            <div class="grid-container">
+                {% include "partials/post_list_items.html"%}
+            </div>
+        </div>
+    </div>
+
+    <aside class="" >
+        <div class="side-panel">
+            <div class="side-categories">
+                <div class="side-categories-container">
+                    <h2>Categories</h2>
+                    <hr>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                category 1
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                category 2
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="side-trending">
+                <div class="side-trending-container">
+                    <h2>Trending</h2>
+                    <hr>
+                    <ul>
+                        <li class="">
+                            <a href="#">
+                                <div class="image-container">
+                                    <img src="{% static 'images/image-1.jpg' %}" alt="">
+                                </div>
+                                <div class="trending-info v-flex-container">
+                                    <h3>very long item name</h3>
+                                    <p>John Dou</p>
+                                </div>
+                            </a>
+                        </li>    
                         
-                        <div class="most-view-sub">
-                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </a>
-                    <div class="item-user-info flex-container">
-                        <div>
-                            <p><span class="user-name">John Dou</span></p>
-                            <p><span class="creation-date">19 SEP 2023</span></p>
-                        </div>
-                        <div class="item-user-interaction flex-container">
-                            <div class="item-likes">
-                                <p>
-                                    <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                </p>
-                            </div>
-                            <div class="item-comments">
-                                <p>
-                                    <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+                        
+                </div>
+
+                
+            </div>
+            <div class="side-tags">
+                <div class="side-tags-container">
+                    <h2>Tags</h2>
+                    <hr>
+                    <div>
+                        <p>
+                            <a href="">tag1</a>
+                            <a href="">tag1</a>
+
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </aside>
+</section>
+{% endblock %}
     
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="all-items-container">
-                    <!-- <h2 class = "section-title">Items</h2> -->
-                    <div class="grid-container">
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item-container">
-                            <a href="">
-        
-                                <div class="image-container item-image">
-                                    <h3 id="item-category">category</h3>
-                                    <img src="assets/images/image-1.jpg" alt="">
-                                </div>
-                            </a>
-                            <div class="item-user-info">
-                                <p><span class="user-name">John Dou</span> . <span class="creation-date">19 SEP 2023</span></p>
-                            </div>
-                            <a href="">
-                                <div class="item-title">
-                                    <h2>title</h2>
-                                </div>
-                                <div class="item-sub">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>
-                                </div>
-        
-                            </a>
-                            <hr>
-                            <div class="item-user-interaction flex-container">
-                                <div class="item-likes">
-                                    <p>
-                                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
-                                    </p>
-                                </div>
-                                <div class="item-comments">
-                                    <p>
-                                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
-        
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <aside class="" >
-               <div class="side-panel">
-                    <div class="side-categories">
-                        <div class="side-categories-container">
-                            <h2>Categories</h2>
-                            <hr>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        category 1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        category 2
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="side-trending">
-                        <div class="side-trending-container">
-                            <h2>Trending</h2>
-                            <hr>
-                            <ul>
-                                <li class="">
-                                    <a href="#">
-                                        <div class="image-container">
-                                            <img src="assets/images/image-1.jpg" alt="">
-                                        </div>
-                                        <div class="trending-info v-flex-container">
-                                            <h3>very long item name</h3>
-                                            <p>John Dou</p>
-                                        </div>
-                                    </a>
-                                </li>    
-                                <li class="">
-                                    <a href="#">
-                                        <div class="image-container">
-                                            <img src="assets/images/image-1.jpg" alt="">
-                                        </div>
-                                        <div class="trending-info v-flex-container">
-                                            <h3>very long item name</h3>
-                                            <p>John Dou</p>
-                                        </div>
-                                    </a>
-                                </li>    
-                                <li class="">
-                                    <a href="#">
-                                        <div class="image-container">
-                                            <img src="assets/images/image-1.jpg" alt="">
-                                        </div>
-                                        <div class="trending-info v-flex-container">
-                                            <h3>very long item name</h3>
-                                            <p>John Dou</p>
-                                        </div>
-                                    </a>
-                                </li>    
-                                <li class="">
-                                    <a href="#">
-                                        <div class="image-container">
-                                            <img src="assets/images/image-1.jpg" alt="">
-                                        </div>
-                                        <div class="trending-info v-flex-container">
-                                            <h3>very long item name</h3>
-                                            <p>John Dou</p>
-                                        </div>
-                                    </a>
-                                </li>    
-                                
-                        </div>
-
-                        
-                    </div>
-                    <div class="side-tags">
-                        <div class="side-tags-container">
-                            <h2>Tags</h2>
-                            <hr>
-                            <div>
-                                <p>
-                                    <a href="">tag1</a>
-                                    <a href="">tag1</a>
-
-                                </p>
-                            </div>
-                    </div>
-               </div>
-            </aside>
-        </section>
-    </main>
-    <footer class="flex-container">
-        <div class="copy-info">
-            <p>Powered by me</p>
-            <p>2023</p>
-        </div>
-        <div class="main-container flex-container">
-            <ul class="social-media  flex-container">
-                <li class="media-link flex-container">
-                    <a href=""><i class="fa-brands fa-facebook "></i></a>
-                </li>
-                <li class="media-link flex-container">
-                    <a href=""><i class="fa-brands fa-twitter"></i></a>
-                </li>
-                <li class="media-link flex-container">
-                    <a href=""><i class="fa-brands fa-instagram"></i></a>
-                </li>
-                <li class="media-link flex-container">
-                    <a href=""><i class="fa-brands fa-youtube"></i></a>
-            </ul>
-        </div>
-        
-    </footer>
-
-    <script src="assets/js/menu.js"></script>
-    <script src="assets/js/slider.js"></script>
-</body>
-
-</html>
+    

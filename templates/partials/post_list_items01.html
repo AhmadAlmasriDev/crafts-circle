@@ -1,0 +1,21 @@
+
+{% for post in post_list %}
+        {% if forloop.last %}
+            <li hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed" >
+            
+        
+        {% else %}
+            <li>
+        {% endif %}
+                <div>
+                    <a href = "{% url 'item' post.slug %}" >{{post.title}}</a>
+                    <br>
+                    <p>{{post.content|striptags|slice:":5"}}</p>
+                    <br>
+                    <p>{{post.created_on}}</p>
+                    <br>
+                </div>
+            </li>
+        {% endfor%}
+
+

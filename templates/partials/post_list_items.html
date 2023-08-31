@@ -1,19 +1,48 @@
+{% load static%}
+
+
 
 {% for post in post_list %}
-        {% if forloop.last %}
-            <li hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed" >
-            
+    {% if forloop.last %}
         
-        {% else %}
-            <li>
-        {% endif %}
-                <div>
-                    <a href = "{% url 'item' post.slug %}" >{{post.title}}</a>
-                    <br>
-                    <p>{{post.content|striptags|slice:":5"}}</p>
-                    <br>
-                    <p>{{post.created_on}}</p>
-                    <br>
+        <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        
+    
+    {% else %}
+        <div class="item-container">
+    {% endif %}
+            <a href="{% url 'item' post.slug %}">
+
+                <div class="image-container item-image">
+                    <h3 id="item-category">{{post.category}}</h3>
+                    <img src="{% static 'images/image-1.jpg' %}" alt="">
                 </div>
-            </li>
-        {% endfor%}
+            </a>
+            <div class="item-user-info">
+                <p><span class="user-name">{{post.author}}</span> . <span class="creation-date">{{post.created_on}}</span></p>
+            </div>
+            <a href="{% url 'item' post.slug %}">
+                <div class="item-title">
+                    <h2>{{post.title}}</h2>
+                </div>
+                <div class="item-sub">
+                    <p>{{post.content|striptags|slice:":5"}}</p>
+                </div>
+
+            </a>
+            <hr>
+            <div class="item-user-interaction flex-container">
+                <div class="item-likes">
+                    <p>
+                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
+                    </p>
+                </div>
+                <div class="item-comments">
+                    <p>
+                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+{% endfor%}  
