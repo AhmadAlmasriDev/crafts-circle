@@ -14,7 +14,7 @@ class Post(models.Model):
     featured_image = CloudinaryField('image', default='placeholder')
     image_1 = CloudinaryField('image', default='placeholder')
     image_2 = CloudinaryField('image', default='placeholder')
-    category = models.IntegerField(choices = CATEGORY, default=3)
+    category = models.IntegerField(choices = CATEGORY)
     updated_on = models.DateTimeField(auto_now=True)
     content = models.TextField()
     excerpt = models.TextField(blank=True)
@@ -32,8 +32,7 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
-    def most_liked(self):
-        return self.annotate(num_likes=Count('likes')).order_by('num_likes')
+   
 
 
 class Comment(models.Model):

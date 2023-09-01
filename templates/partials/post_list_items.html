@@ -14,7 +14,7 @@
             <a href="{% url 'item' post.slug %}">
 
                 <div class="image-container item-image">
-                    <h3 id="item-category">{{post.category}}</h3>
+                    <h3 id="item-category">{{post.get_category_display}}</h3>
                     <img src="{% static 'images/image-1.jpg' %}" alt="">
                 </div>
             </a>

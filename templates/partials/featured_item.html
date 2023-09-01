@@ -1,0 +1,43 @@
+{% load static%}
+
+<div class="most-view item-container">
+    <!-- <h2 class = "section-title">Most Viewed</h2> -->
+    <a href="">
+        <div class="most-view-title">
+            <h2>{{featured_post.title}}</h2>
+        </div>
+    </a>
+    <a href="">
+        <div class="image-container most-view-image">
+            <h3 id="item-category">{{featured_post.get_category_display}}</h3>
+            <img src="{% static 'images/image-1.jpg' %}" alt="">
+        </div>
+    </a>
+    
+    <a href="">
+        
+        <div class="most-view-sub">
+            {{featured_post.content | safe}}
+        </div>
+    </a>
+    <div class="item-user-info flex-container">
+        <div>
+            <p><span class="user-name">{{featured_post.author}}</span></p>
+            <p><span class="creation-date">{{featured_post.created_on}}</span></p>
+        </div>
+        <div class="item-user-interaction flex-container">
+            <div class="item-likes">
+                <p>
+                    <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{featured_post.number_of_likes}}</span>
+                </p>
+            </div>
+            <div class="item-comments">
+                <p>
+                    <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+
+                </p>
+            </div>
+        </div>
+    </div>
+    
+</div>

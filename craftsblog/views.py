@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404 
 from django.views import generic, View
-from .models import Post
-from django.db.models import Count
+from .models import Post, CATEGORY
+from django.db.models import Count, Max
 
 
 class PostList(generic.ListView):
@@ -11,17 +11,29 @@ class PostList(generic.ListView):
     # template_name = "index.html"
     paginate_by = 8
 
-    def most_liked(self):
-        return Post.objects.annotate(num_likes=Count('likes')).order_by('num_likes')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # max_likes = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
+        # context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
+        context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
+        context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
+        context['categories'] = CATEGORY
+               
+        return context
+
+
+
 
     def get_template_names(self):
         if self.request.htmx:
-
-            print(self.most_liked())
+            
             return "partials/post_list_items.html"
+           
         return "index.html"
+        
 
-   
+
 
 class PostDetail(View):
     
