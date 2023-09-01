@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'css/item.css' %}">{% endblock%}
+{% block content %}
+    <div class="item-main-container main-container flex-container">
+        <div class="most-view item-container">
+            <!-- <h2 class = "section-title">Most Viewed</h2> -->
+            <a href="">
+                <div class="most-view-title">
+                    <h2>{{post.title}}</h2>
+                </div>
+            </a>
+            <a href="">
+                <div class="image-container most-view-image">
+                    <h3 id="item-category">{{post.get_category_display}}</h3>
+                    <img src="{% static 'images/image-1.jpg' %}" alt="">
+                </div>
+            </a>
+            
+            <a href="">
+                
+                <div class="most-view-sub">
+                    {{post.content | safe}}
+                </div>
+            </a>
+            <div class="item-user-info flex-container">
+                <div>
+                    <p><span class="user-name">{{post.author}}</span></p>
+                    <p><span class="creation-date">{{post.created_on}}</span></p>
+                </div>
+                <div class="item-user-interaction flex-container">
+                    <div class="item-likes">
+                        <p>
+                            {% if post.liked %}
+                                <span class="heart"><i class="fa-solid fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
+                            {% else %}
+                                <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
+                            {% endif%}    
+                        </p>
+                    </div>
+                    <div class="item-comments">
+                        <p>
+                            <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+    
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="commnets-container v-flex-container">
+                <div class="comments-card-container v-flex-container">
+                    {% for comment in comments %}
+                    <div class="comment-card">
+                        <p class="commnet-user-info"><span class="comment-user-name">{{commnet.user}}</span> . <span class="comment-creation-date">{{comment.created_on}}</span></p>
+                        <p class="comment-body">{{comment.comment_body}}</p>
+                    </div>
+                    {% endfor%}
+                    
+                </div> 
+                <div class="comment-form-container">
+                <form class="comment-form">
+                    <p><label for="comment">Leave a comment:</label></p>
+                    <textarea id="comment" name="comment" ></textarea>
+                    <br>
+                    <div class=" flex-container">
+                        <input class="button" type="submit" value="Submit">
+
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% include "partials/side_panel.html"%}
+       
+    </div>
+
+{% endblock %}
+{% block script %}
+<script src="{% static 'js/menu.js' %}"></script>
+{% endblock %}

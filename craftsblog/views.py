@@ -37,11 +37,12 @@ class PostList(generic.ListView):
 
 class PostDetail(View):
     
-
     def get(self, request, slug, *args, **kwargs):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
+        top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         comments = post.comments.filter(approved=True).order_by("-created_on")
+        
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -52,7 +53,9 @@ class PostDetail(View):
             {
                 "post": post,
                 "comments": comments,
-                "liked": liked
+                "categories": CATEGORY,
+                "liked": liked,
+                "top_posts": top_posts
             },
         )
 
