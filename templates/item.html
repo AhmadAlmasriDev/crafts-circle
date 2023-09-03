@@ -5,28 +5,33 @@
     <div class="item-main-container main-container flex-container">
         <div class="most-view item-container">
             <!-- <h2 class = "section-title">Most Viewed</h2> -->
-            <a href="">
-                <div class="most-view-title">
-                    <h2>{{post.title}}</h2>
-                </div>
-            </a>
-            <a href="">
-                <div class="image-container most-view-image">
-                    <h3 id="item-category">{{post.get_category_display}}</h3>
-                    <img src="{% static 'images/image-1.jpg' %}" alt="">
-                </div>
-            </a>
             
-            <a href="">
-                
-                <div class="most-view-sub">
-                    {{post.content | safe}}
-                </div>
-            </a>
+            <div class="most-view-title">
+                <h2>{{post.title}}</h2>
+            </div>
+            
+            
+            <div class="image-container most-view-image">
+                <h3 id="item-category">{{post.get_category_display}}</h3>
+                {% if "placeholder" in post.listing_image.url %}
+                    <img src="{% static 'images/image-1.jpg' %}" alt="Place holder">
+                {% else %}
+                    <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
+                {% endif %}
+                <img src="{% static 'images/image-1.jpg' %}" alt="">
+            </div>
+            
+            
+            
+            
+            <div class="most-view-sub">
+                {{post.content | safe}}
+            </div>
+            
             <div class="item-user-info flex-container">
                 <div>
                     <p><span class="user-name">{{post.author}}</span></p>
-                    <p><span class="creation-date">{{post.created_on}}</span></p>
+                    <p><span class="creation-date">{{post.created_on | date:"M d, Y"}}</span></p>
                 </div>
                 <div class="item-user-interaction flex-container">
                     <div class="item-likes">

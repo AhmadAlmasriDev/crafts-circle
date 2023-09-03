@@ -25,9 +25,14 @@
                 <ul>
                     {% for post in top_posts %}
                         <li class="">
-                            <a href="#">
+                            <a href="{% url 'item' post.slug %}">
                                 <div class="image-container">
-                                    <img src="{% static 'images/image-1.jpg' %}" alt="">
+                                    {% if "placeholder" in post.listing_image.url %}
+                                        <img src="{% static 'images/image-1.jpg' %}" alt="Place holder">
+                                    {% else %}
+                                       <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
+                                    {% endif %}
+                                    
                                     <!-- <img src="{{post.featured_image}}" alt=""> -->
                                 </div>
                                 <div class="trending-info v-flex-container">

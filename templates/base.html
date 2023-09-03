@@ -14,7 +14,18 @@
     <title>Crafts Circle</title>
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 </head>
-
+{% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    {% endif %}
 <body>
     <header class = "flex-container">
         <div class = "main-container flex-container">
@@ -66,17 +77,25 @@
                             
                         </li>
                         <li>
+                            {% if user.is_authenticated %}
+                            <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-regular fa-user"></i></i></a>
+                            {% else %}
                             <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
-                            <!-- <a href="javascript:void(0);" class="icon user-menu" onclick="hideMenu()"><i class="fa-regular fa-user"></i></a> -->
+                            {% endif %}
                             <div id="user-menu" class="drop-down-container display-non">
                                 <ul class="user-drop-down v-flex-container">
+                                    {% if not user.is_authenticated %}
+                                    <li class=" register">
+                                        <a class="link" href="{% url 'account_signup' %}">Register</a>
+                                    </li>
                                     <li>
-                                        <span id="user-menu-name">name</span>
+                                        <a class="link" href="{% url 'account_login' %}">Login</a>
+                                    </li>
+                                    {% else %}
+                                    <li>
+                                        <span id="user-menu-name">Hi {{user.username}}</span>
                                     </li>
                                     <hr>
-                                    <li>
-                                        <a class="link" href="#">Login / register</a>
-                                    </li>
                                     <li>
                                         <a class="link" href="#">Add Item</a>
                                     </li>
@@ -88,8 +107,10 @@
                                     </li>
                                     <hr>
                                     <li>
-                                        <a class="link" href="#">Log Out</a>
+                                        <a class="link" href="{% url 'account_logout' %}">Log Out</a>
                                     </li>
+                                    {% endif %}
+
                                 </ul>
 
                             </div>

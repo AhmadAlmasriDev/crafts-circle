@@ -165,8 +165,9 @@ header {
 #bar-menu ul{
     justify-content:left;
 }
-
-
+li.register{
+    margin-top: 8px;
+}
 .navigation.center{
     left: 0;
     
@@ -312,6 +313,7 @@ aside{
 }
 .most-view-image,
 .item-image{
+    
     position: relative;
     width: 100%;
     
@@ -347,7 +349,18 @@ aside{
 
 .item-user-info{
     align-items: flex-end;
-    margin-top: 5px;
+    margin-top: 8px
+}
+.most-view .item-user-info{
+    margin-top: 16px;
+}
+.most-view-sub {
+    
+    margin-top: 16px;
+}
+.most-view-sub p{
+    font-size:18px;
+    
 }
 .item-user-info > div{
     min-width: 100px;
@@ -804,6 +817,10 @@ footer span{
     }
     .most-view{
         padding-right: 15px;
+    }
+    .most-view-sub p{
+        font-size:22px;
+        
     }
     /* Footer--------------------------------- */
     

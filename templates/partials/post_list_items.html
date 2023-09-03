@@ -15,18 +15,22 @@
 
                 <div class="image-container item-image">
                     <h3 id="item-category">{{post.get_category_display}}</h3>
-                    <img src="{% static 'images/image-1.jpg' %}" alt="">
+                    {% if "placeholder" in post.listing_image.url %}
+                        <img src="{% static 'images/image-1.jpg' %}" alt="Place holder">
+                    {% else %}
+                    <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
+                    {% endif %}
                 </div>
             </a>
             <div class="item-user-info">
-                <p><span class="user-name">{{post.author}}</span> . <span class="creation-date">{{post.created_on}}</span></p>
+                <p><span class="user-name">{{post.author}}</span> . <span class="creation-date">{{post.created_on | date:"M d, Y"}}</span></p>
             </div>
             <a href="{% url 'item' post.slug %}">
                 <div class="item-title">
                     <h2>{{post.title}}</h2>
                 </div>
                 <div class="item-sub">
-                    <p>{{post.content|striptags|slice:":5"}}</p>
+                    <p>{{post.content|striptags|slice:":50"}} ...</p>
                 </div>
 
             </a>
@@ -34,7 +38,7 @@
             <div class="item-user-interaction flex-container">
                 <div class="item-likes">
                     <p>
-                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">13</span>
+                        <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
                     </p>
                 </div>
                 <div class="item-comments">

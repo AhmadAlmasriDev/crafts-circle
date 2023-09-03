@@ -7,23 +7,28 @@
             <h2>{{featured_post.title}}</h2>
         </div>
     </a>
-    <a href="">
+    <a href="{% url 'item' featured_post.slug %}">
         <div class="image-container most-view-image">
             <h3 id="item-category">{{featured_post.get_category_display}}</h3>
-            <img src="{% static 'images/image-1.jpg' %}" alt="">
+            {% if "placeholder" in featured_post.listing_image.url %}
+                <img src="{% static 'images/image-1.jpg' %}" alt="Place holder">
+            {% else %}
+                <img src="{{ featured_post.listing_image.url }}" alt="{{featured_post.title}}">
+            {% endif %}
+            
         </div>
     </a>
     
     <a href="">
         
         <div class="most-view-sub">
-            {{featured_post.content | safe}}
+            {{featured_post.content | safe | slice:":100"}} ...
         </div>
     </a>
     <div class="item-user-info flex-container">
         <div>
             <p><span class="user-name">{{featured_post.author}}</span></p>
-            <p><span class="creation-date">{{featured_post.created_on}}</span></p>
+            <p><span class="creation-date">{{featured_post.created_on | date:"M d, Y"}}</span></p>
         </div>
         <div class="item-user-interaction flex-container">
             <div class="item-likes">
