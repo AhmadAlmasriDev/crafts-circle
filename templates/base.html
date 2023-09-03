@@ -14,141 +14,134 @@
     <title>Crafts Circle</title>
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 </head>
-{% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                    </li>
-                    {% endif %}
+
 <body>
-    <header class = "flex-container">
-        <div class = "main-container flex-container">
-            <div class = "nav-container flex-container">
+    <div class ="main-wrapper">
 
-                <nav id = "bar-menu" class="navigation flex-container ">
-                    <ul class="flex-container">
-                        <li>
-                            <a href="javascript:void(0);" class="icon" onclick="toggleMenu('center-nav-menu'), hideMenu('user-menu')"><i class="fa-solid fa-bars"></i></a>
-
-                        </li>
-                    </ul>
-                </nav>
-                <div class = "logo-container flex-container">
-                    <a id = "logo" class = "flex-container" href="{% url 'home' %}">
-                        <img class = "big-logo" src="{% static 'images/logo.svg' %}" alt="Crafts Circle logo">
-                        <img class = "small-logo" src="{% static 'images/logo-s.svg' %}" alt="Crafts Circle logo">
-                    </a>
-                </div>
-                
-                <nav id="center-nav-menu" class="navigation center flex-container display-non">
-                    <ul class ="flex-container">
-                        <li>
-                            <a class="link" href="{% url 'home' %}">Home</a>
-                        </li>
-                        <li>
-                            <a class="link" href="#">About</a>
-                        </li>
-                        <li>
-                            <a class="link" href="#">Contact</a>
-                        </li>
-                        <li class="search-box">
-                            <form name="search">
-                                <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
-                            </form>
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                        </li>        
-                        
-                    </ul>
-                </nav>
-                
-                <nav id="right-nav-menu" class="navigation right flex-container">
-                    <ul class ="flex-container">
-                        <li class=" search-box ">
-                            <form name="search">
-                                <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
-                            </form>
-                            <i class="fa-solid fa-magnifying-glass"></i>
+        <header class = "flex-container">
+            <div class = "main-container flex-container">
+                <div class = "nav-container flex-container">
+    
+                    <nav id = "bar-menu" class="navigation flex-container ">
+                        <ul class="flex-container">
+                            <li>
+                                <a href="javascript:void(0);" class="icon" onclick="toggleMenu('center-nav-menu'), hideMenu('user-menu')"><i class="fa-solid fa-bars"></i></a>
+    
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class = "logo-container flex-container">
+                        <a id = "logo" class = "flex-container" href="{% url 'home' %}">
+                            <img class = "big-logo" src="{% static 'images/logo.svg' %}" alt="Crafts Circle logo">
+                            <img class = "small-logo" src="{% static 'images/logo-s.svg' %}" alt="Crafts Circle logo">
+                        </a>
+                    </div>
+                    
+                    <nav id="center-nav-menu" class="navigation center flex-container display-non">
+                        <ul class ="flex-container">
+                            <li>
+                                <a class="link" href="{% url 'home' %}">Home</a>
+                            </li>
+                            <li>
+                                <a class="link" href="#">About</a>
+                            </li>
+                            <li>
+                                <a class="link" href="#">Contact</a>
+                            </li>
+                            <li class="search-box">
+                                <form name="search">
+                                    <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
+                                </form>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </li>        
                             
-                        </li>
-                        <li>
-                            {% if user.is_authenticated %}
-                            <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-regular fa-user"></i></i></a>
-                            {% else %}
-                            <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
-                            {% endif %}
-                            <div id="user-menu" class="drop-down-container display-non">
-                                <ul class="user-drop-down v-flex-container">
-                                    {% if not user.is_authenticated %}
-                                    <li class=" register">
-                                        <a class="link" href="{% url 'account_signup' %}">Register</a>
-                                    </li>
-                                    <li>
-                                        <a class="link" href="{% url 'account_login' %}">Login</a>
-                                    </li>
-                                    {% else %}
-                                    <li>
-                                        <span id="user-menu-name">Hi {{user.username}}</span>
-                                    </li>
-                                    <hr>
-                                    <li>
-                                        <a class="link" href="#">Add Item</a>
-                                    </li>
-                                    <li>
-                                        <a class="link" href="#">Favorites</a>
-                                    </li>
-                                    <li>
-                                        <a class="link" href="#">My Page</a>
-                                    </li>
-                                    <hr>
-                                    <li>
-                                        <a class="link" href="{% url 'account_logout' %}">Log Out</a>
-                                    </li>
-                                    {% endif %}
-
-                                </ul>
-
-                            </div>
-                        </li>
-
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
+                    
+                    <nav id="right-nav-menu" class="navigation right flex-container">
+                        <ul class ="flex-container">
+                            <li class=" search-box ">
+                                <form name="search">
+                                    <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
+                                </form>
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                                
+                            </li>
+                            <li>
+                                {% if user.is_authenticated %}
+                                <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-regular fa-user"></i></i></a>
+                                {% else %}
+                                <a href="javascript:void(0);" class="icon user-menu" onclick="toggleMenu('user-menu'), hideMenu('center-nav-menu')"><i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+                                {% endif %}
+                                <div id="user-menu" class="drop-down-container display-non">
+                                    <ul class="user-drop-down v-flex-container">
+                                        {% if not user.is_authenticated %}
+                                        <li class=" register">
+                                            <a class="link" href="{% url 'account_signup' %}">Register</a>
+                                        </li>
+                                        <li>
+                                            <a class="link" href="{% url 'account_login' %}">Login</a>
+                                        </li>
+                                        {% else %}
+                                        <li>
+                                            <span id="user-menu-name">Hi {{user.username}}</span>
+                                        </li>
+                                        <hr>
+                                        <li>
+                                            <a class="link" href="#">Add Item</a>
+                                        </li>
+                                        <li>
+                                            <a class="link" href="#">Favorites</a>
+                                        </li>
+                                        <li>
+                                            <a class="link" href="#">My Page</a>
+                                        </li>
+                                        <hr>
+                                        <li>
+                                            <a class="link" href="{% url 'account_logout' %}">Log Out</a>
+                                        </li>
+                                        {% endif %}
+    
+                                    </ul>
+    
+                                </div>
+                            </li>
+    
+                        </ul>
+                    </nav>
+                </div>
+    
             </div>
+        </header>
+        <main class="flex-container">
+            {% block content %}
+                <!-- Content Goes here -->
+            {% endblock content %}
+        </main>
+        <footer class="flex-container">
+            <div class="copy-info">
+                <p>Powered by me</p>
+                <p>2023</p>
+            </div>
+            <div class="main-container flex-container">
+                <ul class="social-media  flex-container">
+                    <li class="media-link flex-container">
+                        <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook "></i></a>
+                    </li>
+                    <li class="media-link flex-container">
+                        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+                    </li>
+                    <li class="media-link flex-container">
+                        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                    </li>
+                    <li class="media-link flex-container">
+                        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+                </ul>
+            </div>
+            
+        </footer>
+    </div>
 
-        </div>
-    </header>
-    <main class="flex-container">
-        {% block content %}
-            <!-- Content Goes here -->
-        {% endblock content %}
-    </main>
-    <footer class="flex-container">
-        <div class="copy-info">
-            <p>Powered by me</p>
-            <p>2023</p>
-        </div>
-        <div class="main-container flex-container">
-            <ul class="social-media  flex-container">
-                <li class="media-link flex-container">
-                    <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook "></i></a>
-                </li>
-                <li class="media-link flex-container">
-                    <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
-                </li>
-                <li class="media-link flex-container">
-                    <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
-                </li>
-                <li class="media-link flex-container">
-                    <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
-            </ul>
-        </div>
-        
-    </footer>
     {% block script %}
     <script src="{% static 'js/menu.js' %}"></script>
     <script src="{% static 'js/slider.js' %}"></script>

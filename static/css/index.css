@@ -32,6 +32,7 @@ body{
     color: #334155 ;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background-color: #f8f8f8f8;
+   
 }
 h2{
     font-size: 32px;
@@ -53,7 +54,11 @@ a {
     /* padding:2px 6px; */
     
 }
-
+.main-wrapper{
+    min-height: 100vh;
+    position: relative;
+    
+}
 .flex-container {
     display: flex;
     width: 100%;
@@ -394,6 +399,9 @@ aside{
 
 footer{
     background-color: #111827;
+    position: absolute;
+    left: 0;
+    bottom: 0;
     height: 60px;
 }
 .copy-info{

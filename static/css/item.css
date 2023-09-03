@@ -54,6 +54,12 @@ a {
     color: #334155;
 }
 
+.main-wrapper{
+    min-height: 100vh;
+    position: relative;
+    
+}
+
 .flex-container {
     display: flex;
     width: 100%;
@@ -408,6 +414,9 @@ aside{
 
 footer{
     background-color: #111827;
+    position:absolute;
+    left: 0;
+    bottom: 0;
     height: 60px;
 }
 
