@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Post, CATEGORY
 from django.db.models import Count, Max
-
+import random
 
 class PostList(generic.ListView):
     model = Post
@@ -14,13 +14,18 @@ class PostList(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        items = list(Post.objects.all())
+
+        
         # max_likes = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
         # context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
+        context['slider_posts'] = random.sample(items, 3)
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
         context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
         context['categories'] = CATEGORY
                
         return context
+
 
 
 

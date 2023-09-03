@@ -1,12 +1,23 @@
 // Slide---------------------------------------
-
 let slideIndex = 1;
 showSlides(slideIndex);
+
+// auto scroll
+let autoplayInterval = setInterval(function() {
+
+  
+  document.getElementById("next").click();
+  
+ 
+}, 5000); 
+
 
 // Next/previous controls
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
+
+
 
 // Thumbnail image controls
 function currentSlide(n) {
@@ -28,3 +39,5 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
 }
+
+

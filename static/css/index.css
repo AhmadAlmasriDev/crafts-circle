@@ -708,7 +708,9 @@ footer span{
       
       /* Caption text */
       .title-container {
-        min-width: 30%;
+        /* min-width: 30%; */
+        width: 40%;
+        /* max-width: 150px; */
         border: #f3f4f6 solid 3px;
         background-color: #ffffffe6;
         border-radius: 15px;
@@ -717,12 +719,12 @@ footer span{
         padding: 16px 16px;
         position: absolute;
         bottom: 60px;
-        left:100px;
+        left:10%;
         /* width: 100%; */
         /* text-align: center; */
       }
       .title-container h2{
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 600;
         color: #111827;
         /* text-align: left; */
@@ -730,7 +732,7 @@ footer span{
       }
     
       .title-container p{
-        font-size: 18px;
+        font-size: 16px;
         font-weight:400;
         color:#6b7280;
       }
