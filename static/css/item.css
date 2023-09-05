@@ -524,12 +524,14 @@ footer span{
         align-items: center;
     }
 
-    .side-trending-container a:hover .trending-info h3{
+    .side-trending-container a:hover .trending-info h3,
+    .side-trending-container a:hover .trending-info p{
         color: #6b72804d;
     }
-
+    
     .side-trending-container a:hover .image-container{
-        border: solid 3px #6b72804d;
+        /* border: solid 3px #6b72804d; */
+        opacity: .5;
     }
 
     .side-categories,
