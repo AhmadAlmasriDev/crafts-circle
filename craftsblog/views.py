@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Post, CATEGORY
-from django.db.models import Count, Max
+from django.db.models import Count
 from .forms import CommentForm
 import random
 
@@ -49,6 +49,7 @@ class PostDetail(View):
         post = get_object_or_404(queryset, slug=slug)
         top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         comments = post.comments.filter(approved=True).order_by("-created_on")
+        number_of_comments = post.comments.filter(approved=True).order_by("-created_on").count()
         not_approved_posts = post.comments.filter(approved=False)
 
         liked = False
@@ -62,6 +63,7 @@ class PostDetail(View):
             {
                 "post": post,
                 "comments": comments,
+                "number_of_comments": number_of_comments,
                 "categories": CATEGORY,
                 "commented": not_approved_posts,
                 "liked": liked,
@@ -98,6 +100,7 @@ class PostDetail(View):
             {
                 "post": post,
                 "comments": comments,
+                "number_of_comments":comments.count(),
                 "categories": CATEGORY,
                 "commented": not_approved_posts,
                 "liked": liked,
