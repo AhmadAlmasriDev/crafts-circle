@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views import generic, View
-from .models import Post, CATEGORY
-from django.db.models import Count
+from .models import Post, CATEGORY, Comment
+from django.db.models import Count, Q
 from .forms import CommentForm
 import random
 
@@ -11,7 +11,7 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     context_object_name = "post_list"
     # template_name = "index.html"
-    paginate_by = 8
+    paginate_by = 6
 
 
     def get_context_data(self, **kwargs):
@@ -25,12 +25,11 @@ class PostList(generic.ListView):
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
         context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
         context['categories'] = CATEGORY
+        # context['number_of_comments'] = Post.objects.annotate(number_of_comments=Count('comments', filter=Q(comments__approved=True)))
+        # context['number_of_comments'] = Post.objects.annotate(number_of_comments=Count('comments', filter=Q(comments__approved=True)))
+        # context['number_of_comments'] = items.comments.all()
                
         return context
-
-
-
-
 
     def get_template_names(self):
         if self.request.htmx:

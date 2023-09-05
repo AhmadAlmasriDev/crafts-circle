@@ -1,4 +1,4 @@
-{% load static%}
+{% load static %}
 
 
 
@@ -30,7 +30,7 @@
                     <h2>{{post.title}}</h2>
                 </div>
                 <div class="item-sub">
-                    <p>{{post.content|striptags|slice:":50"}} ...</p>
+                    <span>{{post.content|striptags|slice:":50"}} ...</span>
                 </div>
 
             </a>
@@ -43,7 +43,8 @@
                 </div>
                 <div class="item-comments">
                     <p>
-                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+                        <!-- <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">{{post.comments.all.count}}</span> -->
+                        <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">{{post.number_of_comments}}</span>
 
                     </p>
                 </div>

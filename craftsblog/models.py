@@ -32,6 +32,8 @@ class Post(models.Model):
     def number_of_likes(self):
         return self.likes.count()
 
+    def number_of_comments(self):
+        return self.comments.filter(approved=True).count()
    
 
 
@@ -47,7 +49,9 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"Comment: {self.comment_body} By: {self.user_name}"
-
+    
+    
+  
 
 class Message(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="messages")

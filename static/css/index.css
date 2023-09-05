@@ -305,7 +305,7 @@ aside{
 }
 .grid-container{
     
-    
+    margin-bottom: 64px;
     display: grid;
     grid-template-columns: 1fr;
 
