@@ -37,7 +37,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_likes")
+    user_name = models.CharField(max_length=80)
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
@@ -46,7 +46,7 @@ class Comment(models.Model):
         ordering = ["created_on"]
 
     def __str__(self):
-        return f"Comment: {self.comment_body} By: {self.user}"
+        return f"Comment: {self.comment_body} By: {self.user_name}"
 
 
 class Message(models.Model):

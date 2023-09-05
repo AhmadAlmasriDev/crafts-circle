@@ -311,9 +311,11 @@ form.login,
 form.signup,
 form.logout{
     margin-top: 8px;
+    
 }
 main input{
    margin-bottom: 8px;
+  
 }
 main h1{
     margin-bottom: 16px;

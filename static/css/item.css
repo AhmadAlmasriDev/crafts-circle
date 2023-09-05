@@ -379,9 +379,27 @@ aside{
 }
 .comment-form-container{
     margin-top: 16px;
+    margin-bottom: 64px;
     width:100%;
 }
-.comment-form textarea{
+#id_comment_body{
+    padding: 8px;
+    resize: none;
+    font-size: 16px;
+    width: 100%;
+    min-height: 70px;
+    border: #6b72804d solid 2px;
+    border-radius: 10px;
+}
+#id_comment_body:focus{
+    outline: none;
+    border:2px solid #6b7280;
+}
+.alert{
+    background-color: #6b72804d;
+    width: 100%;
+}
+/* .comment-form textarea{
     resize: none;
     font-size: 14px;
     width: 100%;
@@ -392,7 +410,7 @@ aside{
 .comment-form textarea:focus{
     outline: none;
     border:2px solid #6b7280;
-}
+} */
 .comment-form p{
     color: #6b7280;
     margin-bottom: 4px;

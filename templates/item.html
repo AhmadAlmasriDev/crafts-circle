@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags%}
 {% block css %}<link rel="stylesheet" href="{% static 'css/item.css' %}">{% endblock%}
 {% block content %}
     <div class="item-main-container main-container flex-container">
@@ -55,22 +56,38 @@
                 <div class="comments-card-container v-flex-container">
                     {% for comment in comments %}
                     <div class="comment-card">
-                        <p class="commnet-user-info"><span class="comment-user-name">{{commnet.user}}</span> . <span class="comment-creation-date">{{comment.created_on}}</span></p>
+                        <p class="comment-user-info"><span class="comment-user-name">{{comment.user_name}}</span> . <span class="comment-creation-date">{{comment.created_on | date:"M d, Y"}}</span></p>
                         <p class="comment-body">{{comment.comment_body}}</p>
                     </div>
                     {% endfor%}
                     
                 </div> 
                 <div class="comment-form-container">
-                <form class="comment-form">
-                    <p><label for="comment">Leave a comment:</label></p>
-                    <textarea id="comment" name="comment" ></textarea>
-                    <br>
-                    <div class=" flex-container">
-                        <input class="button" type="submit" value="Submit">
-
+                    {% if commented %}
+                    <div class="alert">
+                        Your comment is awaiting approval
                     </div>
-                    </form>
+                    {% else %}
+                        {% if user.is_authenticated %}
+                        <form class="comment-form" method="post">
+                            <p><label for="id_comment_body">Leave a comment:</label></p>
+                            <!-- <textarea id="comment" name="comment" ></textarea> -->
+                            {{ comment_form | crispy }}
+                            {% csrf_token %}
+                            <br>
+                            <div class=" flex-container">
+                                <!-- <input class="button" type="submit" value="Submit"> -->
+                                <button type="submit" class="button">Submit</button>
+
+                            </div>
+                        </form>
+                        {% else %}
+                        <div class=" flex-container">
+                            <a class= "button" href="{{ signup_url }}">signup to comment</a></p>
+                            
+                        </div>
+                        {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

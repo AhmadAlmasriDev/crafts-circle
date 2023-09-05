@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Post, CATEGORY
 from django.db.models import Count, Max
+from .forms import CommentForm
 import random
 
 class PostList(generic.ListView):
@@ -51,6 +52,7 @@ class PostDetail(View):
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
+        comment_form = CommentForm()
 
         return render(
             request,
@@ -59,9 +61,43 @@ class PostDetail(View):
                 "post": post,
                 "comments": comments,
                 "categories": CATEGORY,
+                "commented": False,
                 "liked": liked,
-                "top_posts": top_posts
+                "top_posts": top_posts,
+                "comment_form": comment_form,
             },
         )
 
+    def post(self, request, slug, *args, **kwargs):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        comments = post.comments.filter(approved=True).order_by("-created_on")
+        
+        liked = False
+        if post.likes.filter(id=self.request.user.id).exists():
+            liked = True
+
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            comment_form.instance.user_name = request.user.username
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.save()
+        else:
+            comment_form = CommentForm()
+
+        return render(
+            request,
+            "item.html",
+            {
+                "post": post,
+                "comments": comments,
+                "categories": CATEGORY,
+                "commented": True,
+                "liked": liked,
+                "top_posts": top_posts,
+                "comment_form": comment_form,
+            },
+        )
         
