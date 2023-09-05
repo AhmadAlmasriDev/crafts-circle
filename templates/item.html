@@ -36,17 +36,34 @@
                 </div>
                 <div class="item-user-interaction flex-container">
                     <div class="item-likes">
-                        <p>
-                            {% if post.liked %}
-                                <span class="heart"><i class="fa-solid fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
+                        <p> 
+                            {% if user.is_authenticated %}
+                                         
+                                <form class = "like_button_form" action="{% url 'item_like' post.slug %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if liked %}
+                                        <button type="submit" name="blogpost_id" value="{{post.slug}}" class="heart">
+                                            <i class="fa-solid fa-heart"></i>
+                                            <span class="number">{{post.number_of_likes}}</span>
+                                        </button>
+                                        <!-- <span class="heart"><i class="fa-solid fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span> -->
+                                        {% else %}
+                                        <button type="submit" name="blogpost_id" value="{{post.slug}}" class="heart">
+                                            <i class="fa-regular fa-heart"></i>
+                                            <span class="number">{{post.number_of_likes}}</span>
+                                        </button>
+                                        <!-- <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span> -->
+                                    {% endif %}    
+                                </form>
                             {% else %}
                                 <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
-                            {% endif%}    
+                            {% endif %}
+
                         </p>
                     </div>
                     <div class="item-comments">
                         <p>
-                            <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
+                            <span class="bubble"><i class="fa-regular fa-comment"></i></span><span class="number">22</span>
     
                         </p>
                     </div>
@@ -64,12 +81,15 @@
                 </div> 
                 <div class="comment-form-container">
                     {% if commented %}
-                    <div class="alert">
-                        Your comment is awaiting approval
+                    <div class=" flex-container">
+                        <div class="alert flex-container">
+                            <p>Your comment is awaiting approval</p>
+
+                        </div>
                     </div>
                     {% else %}
                         {% if user.is_authenticated %}
-                        <form class="comment-form" method="post">
+                        <form class="comment-form" method="POST">
                             <p><label for="id_comment_body">Leave a comment:</label></p>
                             <!-- <textarea id="comment" name="comment" ></textarea> -->
                             {{ comment_form | crispy }}

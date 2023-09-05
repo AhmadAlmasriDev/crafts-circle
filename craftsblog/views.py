@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404 
+from django.shortcuts import render, get_object_or_404, reverse
+from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Post, CATEGORY
 from django.db.models import Count, Max
@@ -48,7 +49,8 @@ class PostDetail(View):
         post = get_object_or_404(queryset, slug=slug)
         top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         comments = post.comments.filter(approved=True).order_by("-created_on")
-        
+        not_approved_posts = post.comments.filter(approved=False)
+
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -61,7 +63,7 @@ class PostDetail(View):
                 "post": post,
                 "comments": comments,
                 "categories": CATEGORY,
-                "commented": False,
+                "commented": not_approved_posts,
                 "liked": liked,
                 "top_posts": top_posts,
                 "comment_form": comment_form,
@@ -73,7 +75,8 @@ class PostDetail(View):
         post = get_object_or_404(queryset, slug=slug)
         top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         comments = post.comments.filter(approved=True).order_by("-created_on")
-        
+        not_approved_posts = post.comments.filter(approved=False)
+
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -84,6 +87,8 @@ class PostDetail(View):
             comment = comment_form.save(commit=False)
             comment.post = post
             comment.save()
+            
+            return HttpResponseRedirect(reverse('item', args=[slug]))
         else:
             comment_form = CommentForm()
 
@@ -94,10 +99,22 @@ class PostDetail(View):
                 "post": post,
                 "comments": comments,
                 "categories": CATEGORY,
-                "commented": True,
+                "commented": not_approved_posts,
                 "liked": liked,
                 "top_posts": top_posts,
                 "comment_form": comment_form,
             },
         )
-        
+
+
+class ItemLike(View):
+
+    def post(self, request, slug):
+        post = get_object_or_404(Post, slug=slug)
+
+        if post.likes.filter(id = request.user.id).exists():
+            post.likes.remove(request.user)
+        else:
+            post.likes.add(request.user)
+
+        return HttpResponseRedirect(reverse('item', args=[slug]))
