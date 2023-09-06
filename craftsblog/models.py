@@ -9,7 +9,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="item_posts"
+        User, on_delete=models.CASCADE, related_name="post_author"
     )
     slider_image = CloudinaryField('slider_image', default='placeholder')
     listing_image = CloudinaryField('listing_image', default='placeholder')
@@ -34,8 +34,9 @@ class Post(models.Model):
 
     def number_of_comments(self):
         return self.comments.filter(approved=True).count()
-   
 
+    def test_group(self):
+        return self.post_author.get_all_field_names()
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")

@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Post, CATEGORY, Comment
-from django.db.models import Count, Q
+from django.db.models import Count
 from .forms import CommentForm
 import random
 

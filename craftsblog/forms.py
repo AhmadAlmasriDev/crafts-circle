@@ -10,3 +10,11 @@ class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['comment_body'].label = ''
+
+class AddItemForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ('title','author','slider_image','listing_image','category','content','status')
+    def __init__(self, *args, **kwargs):
+        super(AddItemForm, self).__init__(*args, **kwargs)
+        # self.fields['comment_body'].label = ''
