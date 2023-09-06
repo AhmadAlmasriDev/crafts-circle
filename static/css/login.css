@@ -278,7 +278,7 @@ li.register{
 /* ---------------------------Main------------------------------------------- */
 
 main{
-
+    margin-top:128px ;
     height: 75vh;
 }
 
@@ -313,9 +313,31 @@ form.logout{
     margin-top: 8px;
     
 }
-main input{
-   margin-bottom: 8px;
-  
+main input,
+main select{
+    margin-bottom: 8px;
+    background-color: #f3f4f6;
+    border: #6b72804d solid 2px;
+    padding: 8px;
+    border-radius: 5px;
+    max-width: 200px;
+    height:32px;
+    color: #334155;
+
+    
+        
+    /* margin-left: auto;
+    margin-right: 16px; */
+}
+main input:focus{
+    border: #6b7280 solid 2px;
+}
+
+form p{
+    display: flex;
+    
+    flex-direction: column;
+    
 }
 main h1{
     margin-bottom: 16px;
@@ -380,7 +402,19 @@ footer span{
     
 
     /* Item---------------------------------- */
-
+    main input,
+    main select{
+            
+        margin-left: auto;
+        margin-right: 16px;
+    }
+    
+    
+    form p{
+        
+        flex-direction:row;
+        
+    }
 
 /* ---------------------------768px------------------------------------------ */
 
@@ -490,7 +524,7 @@ footer span{
     }
     
     /* Items--------------------------------- */
-    
+  
     /* Footer--------------------------------- */
     
     .copy-info{

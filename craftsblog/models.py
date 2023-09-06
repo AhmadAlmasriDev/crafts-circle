@@ -36,7 +36,7 @@ class Post(models.Model):
         return self.comments.filter(approved=True).count()
 
     def test_group(self):
-        return self.post_author.get_all_field_names()
+        return self.author._meta.fields
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
