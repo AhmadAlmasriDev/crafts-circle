@@ -56,7 +56,10 @@ INSTALLED_APPS = [
     'django_htmx',
 ]
 SITE_ID = 1
-ACCOUNT_FORMS = {'signup': 'craftsblog.forms.CustomSignupForm'}
+ACCOUNT_FORMS = {
+    'signup': 'craftsblog.forms.CustomSignupForm',
+    # 'login': 'craftsblog.forms.CustomSigninForm',
+    }
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 

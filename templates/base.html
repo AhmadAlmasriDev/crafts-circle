@@ -43,7 +43,7 @@
                                 <a class="link" href="{% url 'home' %}">Home</a>
                             </li>
                             <li>
-                                <a class="link" href="#">About</a>
+                                <a class="link" href="{% url 'about_page' %}">About</a>
                             </li>
                             <li>
                                 <a class="link" href="#">Contact</a>
@@ -117,6 +117,17 @@
             {% block content %}
                 <!-- Content Goes here -->
             {% endblock content %}
+
+
+
+            <!-- <div class="info-modal flex-container">
+                <div class="info-message">
+
+                </div>
+            </div> -->
+
+
+
         </main>
         <footer class="flex-container">
             <div class="copy-info">

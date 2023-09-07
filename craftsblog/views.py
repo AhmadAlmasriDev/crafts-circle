@@ -120,3 +120,28 @@ class ItemLike(View):
             post.likes.add(request.user)
 
         return HttpResponseRedirect(reverse('item', args=[slug]))
+
+
+
+# class AboutPage(View):
+    
+#     def get(self, request):
+#         queryset = Post.objects.filter(status=1).annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+#         top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        
+#         return render(
+#             request,
+#             "about.html",
+#             {
+                
+#                 "sliders1": top_posts,
+#                 "sliders2": queryset,
+#             },
+#         )
+        
+class AboutPage(generic.ListView):
+    model = Post
+    queryset = queryset = Post.objects.filter(status=1).annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+    context_object_name = "sliders1"
+    template_name = "about.html"
+    

@@ -1,7 +1,7 @@
 from .models import Comment, Post
 from crispy_forms.helper import FormHelper
 from django import forms
-from allauth.account.forms import SignupForm
+from allauth.account.forms import SignupForm, LoginForm
 from django.contrib.auth.models import Group
 
 class CommentForm(forms.ModelForm):
@@ -32,3 +32,10 @@ class CustomSignupForm(SignupForm):
         # user.save()
         return user
    
+class CustomSigninForm(LoginForm):
+    
+    def save(self, request):
+        user = super(CustomSigninForm, self).save(request)
+      
+        user.save()
+        return user
