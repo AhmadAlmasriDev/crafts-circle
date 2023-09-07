@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Comment, Message 
+from .models import Post, Comment, Message, ContactMessage
 from django_summernote.admin import SummernoteModelAdmin
 
 
@@ -34,3 +34,12 @@ class MessageAdmin(admin.ModelAdmin):
         queryset.update(read=True)
 
 
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('user_name', 'user_email', 'message_body', 'created_on', 'read')
+    list_filter = ('read', 'created_on')
+    search_fields = ('user_name', 'message_body')
+    actions = ['message_read']
+
+    def message_read(self, request, queryset):
+        queryset.update(read=True)

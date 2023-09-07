@@ -27,7 +27,7 @@
         <!-- Slideshow container -->
         <div class="slideshow">
             <!-- Full-width images with number and caption text -->
-            {% for slider in sliders1 %}
+            {% for slider in sliders %}
             <div class="my-slides fade">
                 <div class="image-container">
                     <img src="{{ slider.slider_image.url }}" alt="{{slider.title}}">
@@ -36,7 +36,7 @@
             </div>
             {% endfor %}
             <div class="nav-dots display-non">
-                {% for slider in sliders1 %}
+                {% for slider in sliders %}
                 <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
                 
                 {% endfor %}
@@ -55,34 +55,54 @@
 </section>
 <section id = "items"  class="main-container flex-container">
     <div class="info-main-container flex-container">
-        <div class="info-container flex-container">
-            <div class="creator-info">
-                <div class="image-container creator-image">
-                    <img src="" alt="">
+        <div class="info-container v-flex-container">
+            <div class="website info v-flex-container">
+                <div class="image-container website-image">
+                    <img src="{% static 'images/crafts.webp' %}" alt="">
                 </div>
-                <div class="creator-info-text">
-                    <h2></h2>
-                    <p></p>
+                <div class="website-info-text info-text">
+                    <h2>General Information</h2>
+                    <p>thanks for stopping by, hope you'll like my shop 
+                        Actually I don't know what to write about my self, but i'll give it a try.</p>
+                         
+                    <p>I'm a self-taught artisan and a DIY type of guy, that prefers making things with his own hands. </p>
+                        
+                    <p>When I finished my masters degree in computer science and started working, I realized at some point that this is not the thing I want to do for the rest of my life. So I started looking. And I'm telling you it's not that easy, specially with the economic crises one after the other here in Ukraine.</p>
                 </div>
             </div>
-            <div class="user-rules">
+            <hr>
+            <div class="user info v-flex-container ">
                 <div class="image-container user-rules-image">
-                    <img src="" alt="">
+                    <img src="{% static 'images/crafts.webp' %}" alt="">
                 </div>
-                <div class="user-rules-text">
-                    <h2></h2>
-                    <p></p>
+                <div class="user-rules-text info-text">
+                    <h2>General Information</h2>
+                    <p>thanks for stopping by, hope you'll like my shop 
+                        Actually I don't know what to write about my self, but i'll give it a try.</p>
+                         
+                    <p>I'm a self-taught artisan and a DIY type of guy, that prefers making things with his own hands. </p>
+                        
+                    <p>When I finished my masters degree in computer science and started working, I realized at some point that this is not the thing I want to do for the rest of my life. So I started looking. And I'm telling you it's not that easy, specially with the economic crises one after the other here in Ukraine.</p>
+                
                 </div>
             </div> 
-            <div class="manager-rules">
+            <hr>
+            <div class="manager info v-flex-container">
                 <div class="image-container manager-rules-image">
-                    <img src="" alt="">
+                    <img src="{% static 'images/crafts.webp' %}" alt="">
                 </div>
-                <div class="manager-rules-text">
-                    <h2></h2>
-                    <p></p>
+                <div class="manager-rules-text info-text">
+                    <h2>General Information</h2>
+                    <p>thanks for stopping by, hope you'll like my shop 
+                        Actually I don't know what to write about my self, but i'll give it a try.</p>
+                         
+                    <p>I'm a self-taught artisan and a DIY type of guy, that prefers making things with his own hands. </p>
+                        
+                    <p>When I finished my masters degree in computer science and started working, I realized at some point that this is not the thing I want to do for the rest of my life. So I started looking. And I'm telling you it's not that easy, specially with the economic crises one after the other here in Ukraine.</p>
+                
                 </div>
             </div>
+            <hr>
         </div>
     </div>
     

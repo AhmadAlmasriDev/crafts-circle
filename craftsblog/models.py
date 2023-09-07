@@ -66,3 +66,18 @@ class Message(models.Model):
     
     def __str__(self):
         return f"Message: {self.message_body}\nFrom: {self.user}"
+
+
+class ContactMessage(models.Model):
+    
+    user_name = models.CharField(max_length=200)
+    user_email = models.EmailField(max_length=254)
+    message_body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)   
+    read = models.BooleanField(default=False)   
+    
+    class meta:
+        ordering = ["created_on"]
+    
+    def __str__(self):
+        return f"Message: {self.message_body}\nFrom: {self.user_name}"

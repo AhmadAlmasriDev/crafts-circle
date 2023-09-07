@@ -1,4 +1,4 @@
-from .models import Comment, Post
+from .models import Comment, Post, ContactMessage
 from crispy_forms.helper import FormHelper
 from django import forms
 from allauth.account.forms import SignupForm, LoginForm
@@ -39,3 +39,13 @@ class CustomSigninForm(LoginForm):
       
         user.save()
         return user
+
+class ContactMessageForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ('user_name', 'user_email', 'message_body')
+    def __init__(self, *args, **kwargs):
+        super(ContactMessageForm, self).__init__(*args, **kwargs)
+        self.fields['message_body'].label = 'Message'
+        self.fields['user_name'].label = 'Name'
+        self.fields['user_email'].label = 'Email'
