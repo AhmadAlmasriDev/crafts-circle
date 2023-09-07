@@ -1,9 +1,9 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.http import HttpResponseRedirect
 from django.views import generic, View
-from .models import Post, CATEGORY, Comment
+from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
-from .forms import CommentForm
+from .forms import CommentForm, ContactMessageForm
 import random
 
 class PostList(generic.ListView):
@@ -128,3 +128,42 @@ class AboutPage(generic.ListView):
     context_object_name = "sliders"
     template_name = "about.html"
     
+
+class ContactPage(View):
+    
+    def get(self, request):
+        top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        
+        contact_message_form = ContactMessageForm()
+
+        return render(
+            request,
+            "contact.html",
+            {
+                "sliders": top_posts,
+                "contact_message_form": contact_message_form,
+            },
+        )
+
+    def post(self, request):
+        top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        
+        contact_message_form = ContactMessageForm(data=request.POST)
+        if contact_message_form.is_valid():
+            
+            message = contact_message_form.save(commit=False)
+            
+            message.save()
+            
+            return HttpResponseRedirect(reverse('contact_page'))
+        else:
+            contact_message_form = ContactMessageForm()
+
+        return render(
+            request,
+            "contact.html",
+            {
+                "sliders": top_posts,
+                "contact_message_form": contact_message_form,
+            },
+        )

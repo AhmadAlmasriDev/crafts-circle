@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags%}
+{% block css %}<link rel="stylesheet" href="{% static 'css/contact.css' %}">{% endblock%} 
+{% block content %}
+<section id="hero-section" class="main-container">
+    
+    <div class="slideshow-container v-flex-container">
+        
+        <!-- Slideshow container -->
+        <div class="slideshow">
+            <!-- Full-width images with number and caption text -->
+            {% for slider in sliders %}
+            <div class="my-slides fade">
+                <div class="image-container">
+                    <img src="{{ slider.slider_image.url }}" alt="{{slider.title}}">
+                </div>
+                
+            </div>
+            {% endfor %}
+            <div class="nav-dots display-non">
+                {% for slider in sliders %}
+                <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
+                
+                {% endfor %}
+            </div>
+        
+            <!-- Next and previous buttons -->
+            <a class="prev display-non" onclick="plusSlides(-1)">&#10094;</a>
+            <a id="next" class="next display-non" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        
+        <!-- The dots/circles -->
+        
+    </div>
+
+</section>
+<section id = "items"  class="main-container flex-container">
+    <form class="login" method="POST" action="{% url 'contact_page' %}">
+        {% csrf_token %}
+        
+        {{ contact_message_form | crispy }}
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="flex-container">
+          <button class="button primaryAction" type="submit">Submit</button>
+
+        </div>
+      
+    </form>
+   
+    
+    
+</section>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/menu.js' %}"></script>
+    <script src="{% static 'js/slider.js' %}"></script>
+    
+{% endblock %}    
+    
