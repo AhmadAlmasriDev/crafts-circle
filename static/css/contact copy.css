@@ -288,55 +288,114 @@ main{
 #hero-section{
     margin-top: 120px;
     padding: 0;
-    margin-bottom: 32px;
+    flex-direction: column;
+    
 }
-#items{
-    margin-top: 96px;
-    margin-bottom: 32px;
 
-}
+
 .slideshow-container{
-    display: none;
-}
-
-.contact-info-main-container{
-    
-    /* margin-top: 120px; */
-    /* position: absolute; */
-    z-index: 500;
-    max-width: 100%;
+    display: block;
     padding: 0 24px;
-    left: 0;
-    top: 0;
-    
-}
-.contact-info-container{
-    
-    align-items: start;
-    opacity: .9;
-    color: #111827;
-    background-color: #fff;
-    
-    border: #6b7280 solid 2px;
-    border-radius: 15px;
-  
-    
-    
-}
-.contact-info-form{
-    margin: 16px;
 }
 
-.contact-info-form h2{
-    font-size: 21px;
-    margin-bottom: 8px;
+.slideshow-container{
 }
-.contact-info-form h3{
-    font-size: 19px;
+/* Slideshow container */
+.slideshow {
+    max-width: 360px;
+    height: 250px;
+    position: relative;
+    margin: auto;
+  }
+.my-slides .image-container{
+    
+    height: 250px;
 }
-.contact-info-form a:hover{
-    color: #6b72804d;
-}
+  /* Hide the images by default */
+  .my-slides {
+    display: none;
+  }
+  
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+  
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+  
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  
+  
+  #hero-section img{
+    object-fit:cover;
+    width: 100%;
+    height: 100%;
+   
+    
+  }
+ 
+  
+  /* The dots/bullets/indicators */
+  .nav-dots{
+    text-align:center;
+  }
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+  /* Fading animation */
+  .fade {
+    
+    animation-name: fade;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in-out;
+  }
+  .fade::after{
+    animation-name: fadeout;
+    animation-duration: 1.5s;
+    /* animation-timing-function: ease-in-out;
+    animation-fill-mode: both; */
+  }
+  
+  @keyframes fade {
+       
+    from {opacity: .5}
+    to {opacity: 1}
+  }
+ 
+
+
+
 
 
 /* ---------------------------Items Section---------------------------------- */
@@ -468,7 +527,7 @@ footer span{
 @media screen and (min-width: 480px) {
 
     /* Items--------------------------------- */
-    .contact-info-main-container{
+    .about-main-container{
         
         padding: 0 32px;
     }
@@ -569,178 +628,34 @@ footer span{
     
 
     /* Hero---------------------------------- */
+    #hero-section{
+        margin-top: 120px;
+        padding: 0;
+        flex-direction: row;
+        
+    }
+    
+    
     .slideshow-container{
         display: block;
+        padding: 0 24px;
     }
     
     .slideshow-container{
     }
     /* Slideshow container */
     .slideshow {
-        max-width: 1400px;
-        height: 300px;
+        max-width: 510px;
+        height: 510px;
         position: relative;
-        margin: auto;
+        margin-left: auto;
       }
-      
-      /* Hide the images by default */
-      .my-slides {
-        display: none;
-      }
-      
-      /* Next & previous buttons */
-      .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-      }
-      
-      /* Position the "next button" to the right */
-      .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-      }
-      
-      /* On hover, add a black background color with a little bit see-through */
-      .prev:hover, .next:hover {
-        background-color: rgba(0,0,0,0.8);
-      }
-      
-      /* Caption text */
-      .title-container {
-        /* min-width: 30%; */
-        width: 40%;
-        /* max-width: 150px; */
-        border: #f3f4f6 solid 3px;
-        background-color: #ffffffe6;
-        border-radius: 15px;
-        
-        /* font-size: 15px; */
-        padding: 16px 16px;
-        position: absolute;
-        bottom: 60px;
-        left:10%;
-        /* width: 100%; */
-        /* text-align: center; */
-      }
-      .title-container h2{
-        font-size: 20px;
-        font-weight: 600;
-        color: #111827;
-        /* text-align: left; */
-        
-      }
-    
-      .title-container p{
-        font-size: 16px;
-        font-weight:400;
-        color:#6b7280;
-      }
-      
-      #hero-section img{
-        object-fit:cover;
-        
-        width: 100%;
-       
-        
-      }
-     
-      
-      /* The dots/bullets/indicators */
-      .nav-dots{
-        text-align:center;
-      }
-      .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-      }
-      
-      .active, .dot:hover {
-        background-color: #717171;
-      }
-      
-      /* Fading animation */
-      .fade {
-        
-        animation-name: fade;
-        animation-duration: 1.5s;
-        animation-timing-function: ease-in-out;
-      }
-      .fade::after{
-        animation-name: fadeout;
-        animation-duration: 1.5s;
-        /* animation-timing-function: ease-in-out;
-        animation-fill-mode: both; */
-      }
-      
-      @keyframes fade {
-           
-        from {opacity: .5}
-        to {opacity: 1}
-      }
-     
     .my-slides .image-container{
-        height: 300px;
-    }
-    /* Hero--------------------------------- */
-    #hero-section{
-        padding: 0 64px;
-        position: relative;
-    }
-    .contact-info-main-container{
-        margin-top: 0;
-        position: absolute;
-        z-index: 500;
-        max-width: 100%;
-        padding: 0 64px;
-        left: 0;
-        top: 0;
         
+        height: 510px;
     }
-    .contact-info-container{
-        align-items: center;
-        opacity: .9;
-        color: #334155;
-        background-color: #fff;
-        
-        border: #6b7280 solid 2px;
-        border-radius: 15px;
-        height: 300px;
-        /* margin-top: -150px; */
-        
-        
-    }
-    .contact-info-form{
-        margin: 0 64px;
-    }
-    .contact-info-form h2{
-        font-size: 32px;
-        margin-bottom: 8px;
-    }
-    .contact-info-form a{
-        font-size:19px;
-    }
-
-  
-    .contact-info-form h3{
-        font-size: 24px;
-    }
-
+    
+    
     
     /* Footer--------------------------------- */
     
@@ -786,36 +701,32 @@ footer span{
 
     /* Hero---------------------------------- */
     
-/* Hero---------------------------------- */
-    
+
+
+
+
+
     .slideshow {
-            
+        
         height: 500px;
     }
     .my-slides .image-container{
         height: 500px;
     }
-    .contact-info-container{
-
+    .about-container{
+   
         height: 500px;
         
     }
-    .contact-info-form{
+    .about-text{
         margin: 0 64px;
     }
-    .contact-info-form h2{
+    .about-text h2{
         font-size: 42px;
         margin-bottom: 16px;
     }
-    .contact-info-form a{
+    .about-text p{
         font-size:23px;
-}
-    .contact-info-form h3{
-        font-size: 32px;
-    }
-
-    .contact-main-container{
-        width: 50%;
     }
     /* Items--------------------------------- */
     

@@ -3,27 +3,9 @@
 {% load crispy_forms_tags%}
 {% block css %}<link rel="stylesheet" href="{% static 'css/contact.css' %}">{% endblock%} 
 {% block content %}
-<section id="hero-section" class="main-container">
-    <div class="contact-info-main-container flex-container">
-        <div class="contact-info-container flex-container">
-            
-            <div class="contact-info-form">
-                <h2>You can contact us by leaving a message or via our emails.</h2>
-                <div class="email-info">
-                    <h3>Advertizing:</h3>
-                    <a class="email" href="mailto:advertizing@email.com">advertizing@email.com</a>
-                </div>
-            <div class="email-info">
-                <h3>support:</h3>
-                <a class="email" href="mailto:support@email.com">support@email.com</a>
-            </div>
-            </div>
-            
-        </div>
-
-
-    </div>
-    <div class="slideshow-container v-flex-container">
+<section id="hero-section" class="main-container ">
+  
+    <div class="slideshow-container flex-container">
         
         <!-- Slideshow container -->
         <div class="slideshow">
@@ -47,7 +29,7 @@
             <a class="prev display-non" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" class="next display-non" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        
+        <br>
         
         <!-- The dots/circles -->
         
@@ -60,7 +42,7 @@
         <div class="contact-container">
             <h2>Leave a message</h2>
             <p>We will get back to you as soon as possible</p>
-            
+            <a class= "signup-link" href="{{ signup_url }}">sign up</a> first.</p>
             
             
             <form class="contact" method="POST" action="{% url 'contact_page' %}">
@@ -76,6 +58,20 @@
                 </div>
             
             </form>
+        </div>
+    </div>
+    <div class="contact-info-main-container">
+        <div class="contact-info-container">
+            <h2>You can contact us by leaving a message or via our emails.</h2>
+            <div class="email-info">
+                <h3>Advertizing:</h3>
+                <a class="email" href="mailto:advertizing@email.com">advertizing@email.com</a>
+            </div>
+            <div class="email-info">
+                <h3>support:</h3>
+                <a class="email" href="mailto:support@email.com">support@email.com</a>
+            </div>
+            
         </div>
     </div>
     
