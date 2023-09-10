@@ -4,6 +4,10 @@ from django import forms
 from allauth.account.forms import SignupForm, LoginForm
 from django.contrib.auth.models import Group
 
+
+
+
+
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
@@ -12,14 +16,16 @@ class CommentForm(forms.ModelForm):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['comment_body'].label = ''
 
+
 class AddItemForm(forms.ModelForm):
+        
     class Meta:
         model = Post
-        fields = ('title','author','slider_image','listing_image','category','content','status')
+        fields = ('title', 'slider_image', 'listing_image', 'category', 'content', 'status')
     def __init__(self, *args, **kwargs):
         super(AddItemForm, self).__init__(*args, **kwargs)
-        # self.fields['comment_body'].label = ''
-
+        self.helper = FormHelper(self)
+        
 
 class CustomSignupForm(SignupForm):
     group = forms.ModelChoiceField(queryset=Group.objects.all())
@@ -32,13 +38,13 @@ class CustomSignupForm(SignupForm):
         # user.save()
         return user
    
-class CustomSigninForm(LoginForm):
+# class CustomSigninForm(LoginForm):
     
-    def save(self, request):
-        user = super(CustomSigninForm, self).save(request)
+#     def save(self, request):
+#         user = super(CustomSigninForm, self).save(request)
       
-        user.save()
-        return user
+#         user.save()
+#         return user
 
 class ContactMessageForm(forms.ModelForm):
     class Meta:

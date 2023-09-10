@@ -3,7 +3,8 @@ from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
-from .forms import CommentForm, ContactMessageForm
+from .forms import CommentForm, ContactMessageForm,AddItemForm
+from cloudinary import uploader
 import random
 
 class PostList(generic.ListView):
@@ -167,3 +168,55 @@ class ContactPage(View):
                 "contact_message_form": contact_message_form,
             },
         )
+
+class AddItem(View):
+    
+    def get(self, request):
+              
+        add_item_form = AddItemForm()
+
+        return render(
+            request,
+            "add_item.html",  
+            {
+                "add_item_form": add_item_form,
+                },
+        )
+
+    def post(self, request):
+        add_item_form = AddItemForm(request.POST, request.FILES)        
+       
+        if add_item_form.is_valid():
+            add_item_form.instance.author = request.user
+            
+            
+            # post = Post()
+            # post.author = request.user
+            # post.category = request.POST.get('category')
+            # post.title = request.POST.get('title')
+            
+            # post.listing_image = request.POST.get('listing_image')
+
+            
+            # post.save()
+
+            # add_item_form.save()
+            
+            item = add_item_form.save(commit=False)
+            item.save()
+
+           
+            
+            return HttpResponseRedirect(reverse('add_item'))
+        else:
+            add_item_form = AddItemForm()
+
+        return render(
+            request,
+            "add_item.html",
+            {
+                
+                "add_item_form": add_item_form,
+            },
+        )
+
