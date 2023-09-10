@@ -4,7 +4,7 @@ from django.views import generic, View
 from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
 from .forms import CommentForm, ContactMessageForm,AddItemForm
-from cloudinary import uploader
+from django.utils.text import slugify
 import random
 
 class PostList(generic.ListView):
@@ -188,6 +188,7 @@ class AddItem(View):
        
         if add_item_form.is_valid():
             add_item_form.instance.author = request.user
+            add_item_form.instance.slug = slugify(request.POST.get('title'))
             
             
             # post = Post()

@@ -9,12 +9,12 @@
     
     
     
-    <form class="add" method="POST" action="{% url 'add_item' %}">
+    <form class="add" method="POST" action="{% url 'add_item' %}" enctype="multipart/form-data">
         {% csrf_token %}
         
         {{ add_item_form | crispy }}
         {% if redirect_field_value %}
-        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
         {% endif %}
         <div class="flex-container">
         <button class="button primaryAction" type="submit">Submit</button>
