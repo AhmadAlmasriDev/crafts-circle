@@ -39,7 +39,12 @@
 </section>
 <section id = "items"  class="main-container flex-container">
     <div class="main-panel v-flex-container">
+        
+        {% if request.get_full_path == '/' %}
         {% include "partials/featured_item.html"%}
+
+        {% endif%}
+        
         
         <div class="all-items-container">
             <!-- <h2 class = "section-title">Items</h2> -->

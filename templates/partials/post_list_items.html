@@ -4,8 +4,10 @@
 
 {% for post in post_list %}
     {% if forloop.last %}
-        
-        <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+       
+    <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+           
+       
         
     
     {% else %}

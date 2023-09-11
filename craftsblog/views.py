@@ -12,23 +12,18 @@ class PostList(generic.ListView):
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     context_object_name = "post_list"
     # template_name = "index.html"
-    paginate_by = 6
+    paginate_by = 4
 
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
 
-        
-        # max_likes = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
-        # context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
-        context['slider_posts'] = random.sample(items, 3)
+        context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
         context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
         context['categories'] = CATEGORY
-        # context['number_of_comments'] = Post.objects.annotate(number_of_comments=Count('comments', filter=Q(comments__approved=True)))
-        # context['number_of_comments'] = Post.objects.annotate(number_of_comments=Count('comments', filter=Q(comments__approved=True)))
-        # context['number_of_comments'] = items.comments.all()
+        
                
         return context
 
@@ -40,6 +35,52 @@ class PostList(generic.ListView):
         return "index.html"
         
 
+class CategoryFilter(generic.ListView):
+    model = Post
+
+
+    # def get(self, request, *args, **kwargs):
+    #     category = kwargs['category']
+        
+    #     queryset = Post.objects.filter(category=category).order_by("-created_on")
+    #     return queryset
+
+
+    # def get_queryset(self):
+    #     category1 = self.request.GET.get('category')
+    #     print(category1)
+    #     queryset = Post.objects.filter(category=category1).order_by("-created_on")
+    #     return queryset
+
+
+    # context_object_name = "post_list"
+    # template_name = "index.html"
+    paginate_by = 4
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        items = list(Post.objects.all())
+        
+        category = self.kwargs['category']
+        
+        queryset = Post.objects.filter(category=category).order_by("-created_on")
+
+        context['slider_posts'] = random.sample(items, 3)
+        context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
+        context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
+        context['categories'] = CATEGORY
+        context['post_list'] = queryset
+        
+        return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            
+            return "partials/post_list_items.html"
+           
+        return "index.html"
+        
 
 
 class PostDetail(View):
