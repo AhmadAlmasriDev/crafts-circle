@@ -63,7 +63,7 @@
             
             
             
-            <form class="contact" method="POST" action="{% url 'contact_page' %}" enctype="multipart/form-data">
+            <form class="contact" method="POST" action="{% url 'contact_page' %}" >
                 {% csrf_token %}
                 
                 {{ contact_message_form | crispy }}

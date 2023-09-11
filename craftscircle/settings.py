@@ -35,6 +35,24 @@ ALLOWED_HOSTS = ['8000-ahmadalmasr-craftscircl-w2ag7kdatmv.ws-eu104.gitpod.io', 
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
+SUMMERNOTE_CONFIG = {
+    # You can put custom Summernote settings
+    'summernote': {
+        # Change editor size
+        'width': '100%',
+        'height': '200px',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+           
+            ['view', ['fullscreen','help']],
+        ],
+    },
+}
+
 # Application definition
 
 INSTALLED_APPS = [

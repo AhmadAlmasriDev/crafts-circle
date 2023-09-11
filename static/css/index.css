@@ -379,7 +379,7 @@ aside{
 }
 .most-view-title h2,
 .item-title h2{
-    font-size: 28;
+    font-size: 28px;
     /* color: #6b7280; */
 }
 .most-view-title h2{
@@ -388,8 +388,12 @@ aside{
 }
 
 .section-title{
-    /* color: #334155; */
-    margin-bottom: 32px;
+    font-weight: 600;
+    font-size: 30px;
+    color: #334155;
+    margin-bottom:32px;
+    text-align: center;
+    width: 100%;
 }
 .most-view-image{
     margin-bottom: 8px;
@@ -457,7 +461,7 @@ footer span{
     }
     .item-container{
         
-        padding: 15px;
+        padding: 0 15px;
     }
 
     aside{
@@ -475,6 +479,10 @@ footer span{
     }
     aside h2{
         font-size: 18px;
+    }
+    .side-categories-container h2{
+        margin-top:16px;
+        
     }
     aside a,
     aside p{
@@ -843,6 +851,13 @@ footer span{
     .most-view-sub p{
         font-size:22px;
         
+    }
+    .section-title{
+        font-size: 36px;
+        color: #334155;
+        /* margin-bottom: 16px; */
+        width: 100%;
+        text-align: left;
     }
     /* Footer--------------------------------- */
     

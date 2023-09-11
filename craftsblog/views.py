@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.views import generic, View
 from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
-from .forms import CommentForm, ContactMessageForm,AddItemForm
+from .forms import CommentForm, ContactMessageForm, AddItemForm
 from django.utils.text import slugify
 import random
 
@@ -125,10 +125,42 @@ class ItemLike(View):
 
 class AboutPage(generic.ListView):
     model = Post
-    queryset = queryset = Post.objects.filter(status=1).annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+    queryset = Post.objects.filter(status=1).annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
     context_object_name = "sliders"
     template_name = "about.html"
     
+
+class FavoritePage(generic.ListView):
+    model = Post
+    def get_queryset(self):
+        # queryset = Post.objects.filter(author=self.request.user).order_by("-created_on")
+        # queryset = Post.objects.filter(liked_by=self.request.user).order_by("-created_on")
+        user=self.request.user
+        queryset = user.item_likes.all()
+        return queryset
+    # context_object_name = "post_list"
+    paginate_by = 6
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        items = list(Post.objects.all())
+        
+        context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        
+        context['categories'] = CATEGORY
+                       
+        return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            
+            return "partials/post_list_items.html"
+           
+        return "favorite.html"
+        
+
 
 class ContactPage(View):
     
@@ -189,20 +221,6 @@ class AddItem(View):
         if add_item_form.is_valid():
             add_item_form.instance.author = request.user
             add_item_form.instance.slug = slugify(request.POST.get('title'))
-            
-            
-            # post = Post()
-            # post.author = request.user
-            # post.category = request.POST.get('category')
-            # post.title = request.POST.get('title')
-            
-            # post.listing_image = request.POST.get('listing_image')
-
-            
-            # post.save()
-
-            # add_item_form.save()
-            
             item = add_item_form.save(commit=False)
             item.save()
 

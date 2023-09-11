@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+ 
+{% block content %}
+<section id="hero-section" class="main-container">
+    
+</section>
+<section id = "items"  class="main-container flex-container">
+    <div class="main-panel v-flex-container">
+        
+        <div class="all-items-container">
+            <h2 class = "section-title">Favorite items</h2>
+            <div class="grid-container">
+                
+                {% include "partials/post_list_items.html"%}
+            </div>
+        </div>
+    </div>
+    {% include "partials/side_panel.html"%}
+    
+</section>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/menu.js' %}"></script>
+    
+    <script src="{% static 'js/htmx.min.js' %}"></script>
+{% endblock %}    
+    

@@ -276,75 +276,87 @@ li.register{
 }
 
 /* ---------------------------Main------------------------------------------- */
-
+.asteriskField{
+    display: none;
+}
 main{
     margin-top:128px ;
     height: 75vh;
 }
-
-
-.login-section,
-.signup-section,
-.logout-section{
-    padding: 0 16px;
-}
-.login-main-container,
-.signup-main-container,
-.logout-main-container{
-padding: 0 8px;
-}
-.signup-link{
-    font-size: 18px;
-    font-weight: 500;
-}
-.signup-link:hover{
-    color: #6b72804d;
-}
-.login-container,
-.signup-container,
-.logout-container{
+.add-item-container{
     border: solid 2px #6b72804d;
     border-radius: 15px;
     padding: 16px;
-}
-form.login,
-form.signup,
-form.logout{
-    margin-top: 8px;
+    width: 100%;
+    /* margin-top: 128px; */
     
 }
+.controls{
+    padding-bottom: 12px;
+}
+.control-group{
+    width: 100%;
+}
+.add-item-title{
+    margin-bottom:32px;
+}
+
+.add-item-main-container{
+    padding: 0 16px;
+    margin-top: 64px;
+    
+}
+
+
+
 main input,
 main select{
-    margin-bottom: 8px;
+    /* margin-bottom: 16px; */
     background-color: #e8f0fe;
     border: #6b72804d solid 2px;
     padding: 8px;
     border-radius: 5px;
     max-width: 200px;
-    height:32px;
+    height:36px;
     color: #334155;
-
-    
-        
-    /* margin-left: auto;
-    margin-right: 16px; */
+    width: 100%;
+} 
+main select {
+    max-width: 100px;
 }
+input[type="file"] {
+    width: 100%;
+    /* margin-bottom: 16px; */
+    
+}
+
+#div_id_content{
+    width:100%;
+}
+#id_slider_image,
+#id_listing_image{
+    
+    margin-bottom: 8px;
+    background-color: unset;
+    border: unset;
+    padding: 0;
+    border-radius: 0;
+    max-width: unset;
+    height:unset;
+    color: unset;
+}    
+        
+   
 main input:focus{
     border: #6b7280 solid 2px;
 }
 
-form p,
-form div.control-group{
-    display: flex;
-    
-    flex-direction: column;
-    
-}
+
 main h1{
     margin-bottom: 16px;
 }
 main .button{
-    margin-top: 16px;
+    
 }
 
 /* ---------------------------Footer----------------------------------------- */
@@ -400,37 +412,16 @@ footer span{
 
 @media screen and (min-width: 480px) {
 
-    
+    .add-item-main-container{
+        padding: 0 32px;
+        
+    }
+
+        
+
 
     /* Item---------------------------------- */
-    main form.login{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    main input,
-    main select{
-            
-        margin-left: auto;
-        margin-right: 16px;
-    }
-    div.controls{
-        margin-left: 16px;
-    }
-    /* div.control-group label{
-        margin-left: 32px;
-    } */
-    label.checkbox input{
-        vertical-align: middle;
-    }
     
-    form p,
-    form div.control-group{
-        
-        flex-direction:row;
-        
-    }
 
 /* ---------------------------768px------------------------------------------ */
 
@@ -540,7 +531,23 @@ footer span{
     }
     
     /* Items--------------------------------- */
-  
+    .add-item-container{
+        max-width: 700px;
+        padding: 32px;
+        
+        
+    }
+
+    
+    .add-item-main-container{
+        padding: 0 32px;
+        margin-top: 128px;
+        
+    }
+    
+    
+    
+     
     /* Footer--------------------------------- */
     
     .copy-info{

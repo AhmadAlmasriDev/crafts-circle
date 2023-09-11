@@ -3,8 +3,8 @@ from crispy_forms.helper import FormHelper
 from django import forms
 from allauth.account.forms import SignupForm, LoginForm
 from django.contrib.auth.models import Group
-
-
+from django_summernote.widgets import SummernoteWidget
+from crispy_forms.layout import Layout, Div, Field
 
 
 
@@ -18,14 +18,21 @@ class CommentForm(forms.ModelForm):
 
 
 class AddItemForm(forms.ModelForm):
-        
+    content = forms.CharField(widget=SummernoteWidget, label="Content", required=True)
+
     class Meta:
         model = Post
         fields = ('title', 'slider_image', 'listing_image', 'category', 'content', 'status')
+
     def __init__(self, *args, **kwargs):
-        super(AddItemForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Div('title', css_class='form-left-container'),
+            Div('slider_image', 'listing_image', css_class='form-right-container'),
+            Div('content', css_class='form-content-container'),
+            Div('status', css_class='form-status-container'),
+        )   
 
 class CustomSignupForm(SignupForm):
     group = forms.ModelChoiceField(queryset=Group.objects.all())
