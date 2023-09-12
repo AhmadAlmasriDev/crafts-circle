@@ -9,6 +9,8 @@
         <div class="item-container" hx-get = "{% url 'category_filter' category %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         {% elif 'favorite' in request.path %}
         <div class="item-container" hx-get = "{% url 'favorite_page'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        {% elif 'my_page' in request.path %}
+        <div class="item-container" hx-get = "{% url 'my_page'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         
         {% endif%}   
            

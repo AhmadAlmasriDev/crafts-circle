@@ -179,6 +179,7 @@ class AboutPage(generic.ListView):
 
 class FavoritePage(generic.ListView):
     model = Post
+    paginate_by = 4
     def get_queryset(self):
         # queryset = Post.objects.filter(author=self.request.user).order_by("-created_on")
         # queryset = Post.objects.filter(liked_by=self.request.user).order_by("-created_on")
@@ -186,16 +187,15 @@ class FavoritePage(generic.ListView):
         queryset = user.item_likes.all()
         return queryset
     # context_object_name = "post_list"
-    paginate_by = 4
-
-
+    
+   
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
-        
+        context['section_title'] = 'Favorite Items'
         context['categories'] = CATEGORY
                        
         return context
@@ -286,3 +286,32 @@ class AddItem(View):
             },
         )
 
+class MyPage(generic.ListView):
+    model = Post
+    paginate_by = 4
+    def get_queryset(self):
+        queryset = Post.objects.filter(author=self.request.user).order_by("-created_on")
+        
+        
+        return queryset
+    # context_object_name = "post_list"
+    
+   
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        items = list(Post.objects.all())
+        
+        context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        context['section_title'] = 'My Page'
+        context['categories'] = CATEGORY
+                       
+        return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            
+            return "partials/post_list_items.html"
+           
+        return "favorite.html"
+        
