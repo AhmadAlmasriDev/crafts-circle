@@ -10,7 +10,7 @@ import random
 class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
-    context_object_name = "post_list"
+    # context_object_name = "post_list"
     # template_name = "index.html"
     paginate_by = 4
 
@@ -53,27 +53,33 @@ class CategoryFilter(generic.ListView):
     #     return queryset
 
 
-    # context_object_name = "post_list"
+    # context_object_name = "category_list"
     # template_name = "index.html"
     paginate_by = 4
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        category = self.kwargs['category']
+        queryset = Post.objects.filter(category=category).order_by("-created_on")
+        return queryset
+        
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
-        
         category = self.kwargs['category']
         
-        queryset = Post.objects.filter(category=category).order_by("-created_on")
 
-        context['slider_posts'] = random.sample(items, 3)
+        context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
-        context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
+        
         context['categories'] = CATEGORY
-        context['post_list'] = queryset
+        
+        context['category'] = category
         
         return context
 
+    
     def get_template_names(self):
         if self.request.htmx:
             
@@ -180,7 +186,7 @@ class FavoritePage(generic.ListView):
         queryset = user.item_likes.all()
         return queryset
     # context_object_name = "post_list"
-    paginate_by = 6
+    paginate_by = 4
 
 
 

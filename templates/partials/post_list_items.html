@@ -1,18 +1,24 @@
 {% load static %}
 
-
-
-{% for post in post_list %}
+{% for post in page_obj %}
+    
     {% if forloop.last %}
-       
-    <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+    {% if request.path == '/' %}
+        <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        {% elif 'filter_by_category' in request.path %}
+        <div class="item-container" hx-get = "{% url 'category_filter' category %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        {% elif 'favorite' in request.path %}
+        <div class="item-container" hx-get = "{% url 'favorite_page'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        
+        {% endif%}   
            
-       
+ 
         
     
     {% else %}
         <div class="item-container">
     {% endif %}
+            
             <a href="{% url 'item' post.slug %}">
 
                 <div class="image-container item-image">
@@ -52,4 +58,5 @@
                 </div>
             </div>
         </div>
+
 {% endfor%}  

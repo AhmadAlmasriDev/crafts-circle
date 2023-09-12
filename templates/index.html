@@ -48,6 +48,15 @@
         
         <div class="all-items-container">
             <!-- <h2 class = "section-title">Items</h2> -->
+            {% if not page_obj %}
+            <div class="no-items-container flex-container">
+                <div class="no-items flex-container">
+                    <h2>No Items Avaliable</h2>
+                   
+                </div>
+
+            </div>
+            {% endif %}
             <div class="grid-container">
                 {% include "partials/post_list_items.html"%}
             </div>
