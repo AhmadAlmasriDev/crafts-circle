@@ -286,6 +286,49 @@ class AddItem(View):
             },
         )
 
+
+class EditItem(View):
+    
+    def get(self, request, slug):
+        queryset = Post.objects.filter(status=1)
+        
+        item = get_object_or_404(queryset, slug=slug)      
+        add_item_form = AddItemForm(instance=item)
+
+        return render(
+            request,
+            "edit_item.html",  
+            {
+                "add_item_form": add_item_form,
+                "item": item,
+                },
+        )
+
+    # def post(self, request):
+    #     add_item_form = AddItemForm(request.POST, request.FILES)        
+       
+    #     if add_item_form.is_valid():
+    #         add_item_form.instance.author = request.user
+    #         add_item_form.instance.slug = slugify(request.POST.get('title'))
+    #         item = add_item_form.save(commit=False)
+    #         item.save()
+
+           
+            
+    #         return HttpResponseRedirect(reverse('add_item'))
+    #     else:
+    #         add_item_form = AddItemForm()
+
+    #     return render(
+    #         request,
+    #         "add_item.html",
+    #         {
+                
+    #             "add_item_form": add_item_form,
+    #         },
+    #     )
+
+
 class MyPage(generic.ListView):
     model = Post
     paginate_by = 4

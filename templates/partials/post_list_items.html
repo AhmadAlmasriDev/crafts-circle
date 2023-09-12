@@ -46,6 +46,13 @@
             </a>
             <hr>
             <div class="item-user-interaction flex-container">
+                {% if 'my_page' in request.path %}
+                <div class="edit-button-container ">
+                    
+                    <a href="{% url 'edit_item' post.slug %}">Edit</a>
+
+                </div>
+                {% endif %}
                 <div class="item-likes">
                     <p>
                         <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
