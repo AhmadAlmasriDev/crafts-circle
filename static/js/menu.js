@@ -12,3 +12,9 @@ function hideMenu(target) {
     x.classList.add("display-non")
 }
 
+
+function closeModal(){
+  let x = document.getElementById("info-modal");
+  x.classList.add("display-non");
+}
+

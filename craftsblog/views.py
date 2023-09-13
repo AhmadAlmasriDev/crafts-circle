@@ -332,15 +332,15 @@ class EditItem(View):
         # )
 
 
-class DeleteItem(View):
+# class DeleteItem(View):
 
-    def post(self, request, slug):
-        queryset = Post.objects.filter(status=1)
-        item = get_object_or_404(queryset, slug=slug)
-        item.delete()
+#     def post(self, request, slug):
+#         queryset = Post.objects.filter(status=1)
+#         item = get_object_or_404(queryset, slug=slug)
+#         item.delete()
 
 
-        return HttpResponseRedirect(reverse('my_page'))
+#         return HttpResponseRedirect(reverse('my_page'))
 
 
 
@@ -380,7 +380,6 @@ class SearchBar(generic.ListView):
         query_input = self.request.GET.get('query_input')
         return Post.objects.filter(title__icontains = query_input).order_by('-created_on')
     # context_object_name = "post_list"
-    
    
 
     def get_context_data(self, **kwargs):
@@ -399,3 +398,26 @@ class SearchBar(generic.ListView):
             return "partials/post_list_items.html"
            
         return "favorite.html"
+
+
+class DeleteItem(View):
+    
+    def get(self, request, slug):
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        
+        return render(
+            request,
+            "confirmation.html",
+            {
+                "post": post,
+            },
+        )
+
+    def post(self, request, slug):
+        queryset = Post.objects.filter(status=1)
+        item = get_object_or_404(queryset, slug=slug)
+        item.delete()
+
+
+        return HttpResponseRedirect(reverse('my_page'))     

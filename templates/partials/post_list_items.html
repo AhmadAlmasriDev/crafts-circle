@@ -53,15 +53,21 @@
                     
                     <div class="edit-button  button">
                         
-                        <a class="" href="{% url 'edit_item' post.slug %}">Edit</a>
+                        <a href="{% url 'edit_item' post.slug %}">Edit</a>
     
                     </div>
-                    <form class = "delete-button" action="{% url 'delete_item' post.slug %}" method="POST">
+                    <div class="delete-button  button">
+                        
+                        <a href="{% url 'delete_item' post.slug %}">delete</a>
+    
+                    </div>
+
+                    <!-- <form class = "delete-button" action="{% url 'delete_item' post.slug %}" method="POST">
                         {% csrf_token %}
                         
                             <button type="submit" name="item_id" value="{{post.slug}}" class="button">Delete
                             </button>
-                    </form>
+                    </form> -->
                 </div>
                 {% endif %}
                 <div class="item-likes">

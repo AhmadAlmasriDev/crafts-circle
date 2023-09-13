@@ -284,6 +284,64 @@ li.register{
 main{
     flex-direction: column;
 }
+
+.info-modal{
+    padding: 16px;
+    align-items: flex-start;
+    position: absolute;
+    background-color: #111827;
+    opacity: .9;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+}
+.info-modal-message{
+    position: sticky;
+    top: 200px;
+    background-color: #f8f8f8f8;
+    border: solid 2px #6b72804d;
+    border-radius: 10px;
+    color: #334155;
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 500px;
+}
+.info-modal-message p{
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+}
+.info-modal button{
+    position: absolute;
+    font-size: 19px;
+    margin-top: 4px;
+    margin-right: 4px;
+    right: 0;
+    top: 0;
+}
+.info-modal button:hover{
+    color: #6b72804d;
+}
+.info-modal-message div{
+    width: 100%;
+    padding-bottom:4px;
+    color: #334155;
+    
+}
+
+div.alert-success{
+    background-color: rgba(0, 128, 0, 0.2);
+    
+    
+}
+div.alert-warning{
+    background-color: rgba(255, 255, 0, 0.2);
+}
+div.alert-danger{
+    background-color: rgba(255, 0, 0, 0.2);
+}
 /* ---------------------------Hero Section----------------------------------- */
 #hero-section{
     margin-top: 120px;
@@ -306,24 +364,23 @@ main{
     font-weight: 500;
     line-height: 19px;
 }
-.delete-button button{
+.delete-button,
+.edit-button {
     margin-left: 16px;
-    background-color: rgba(255, 0, 0, 0.4);
+    background-color:#6b72804d;
 }  
-.delete-button button:hover{
+.delete-button:hover{
     margin-left: 16px;
     background-color: rgb(255, 0, 0);
     
-    color: #fff;
+    
     box-shadow: inset 2px 2px 6px #6b72804d
 }
-.edit-button{
-    
-    background-color: rgba(0, 128, 0, 0.4);
+.delete-button:hover a{
+    color: #fff;
 }
-.edit-button a{
-    color: #334155;
-}
+
+
 
 .edit-button:hover{
     

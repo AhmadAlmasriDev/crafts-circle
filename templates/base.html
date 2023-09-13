@@ -119,12 +119,28 @@
             {% endblock content %}
 
 
+            
 
-            <!-- <div class="info-modal flex-container">
-                <div class="info-message">
+            {% if messages %}
+            <div id="info-modal" class="info-modal flex-container">
+                {% for message in messages %}
+                <div class="info-modal-message flex-container">
+                    <div class=" {{ message.tags }}">
+                        <p>{{ message | safe }}</p>
 
+                    </div>
+                    <button id="close-modal" type="button" onclick="closeModal()" class="close-button" data-bs-dismiss="modal" aria-label="close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
-            </div> -->
+                {% endfor %}
+            </div>
+            <script>
+                setTimeout(function() {
+                    closeModal()
+                }, 4000);
+            </script>
+            {% endif %}
+
+            
 
 
 
