@@ -11,6 +11,8 @@
         <div class="item-container" hx-get = "{% url 'favorite_page'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         {% elif 'my_page' in request.path %}
         <div class="item-container" hx-get = "{% url 'my_page'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        {% elif 'search' in request.path %}
+        <div class="item-container" hx-get = "{% url 'search_bar'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         
         {% endif%}   
            
@@ -48,7 +50,7 @@
             <div class="item-user-interaction flex-container">
                 {% if 'my_page' in request.path %}
                 <div class="buttons-container flex-container">
-
+                    
                     <div class="edit-button  button">
                         
                         <a class="" href="{% url 'edit_item' post.slug %}">Edit</a>

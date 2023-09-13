@@ -49,8 +49,8 @@
                                 <a class="link" href="{% url 'contact_page' %}">Contact</a>
                             </li>
                             <li class="search-box">
-                                <form name="search">
-                                    <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
+                                <form name="search_bar" method="GIT" action="{% url 'search_bar' %}">
+                                    <input type="text" class="search-input" name="query_input" onmouseout="this.value = ''; this.blur();">
                                 </form>
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </li>        
@@ -61,8 +61,8 @@
                     <nav id="right-nav-menu" class="navigation right flex-container">
                         <ul class ="flex-container">
                             <li class=" search-box ">
-                                <form name="search">
-                                    <input type="text" class="search-input" name="search-text" onmouseout="this.value = ''; this.blur();">
+                                <form name="search_bar" method="GIT" action="{% url 'search_bar' %}">
+                                    <input type="text" class="search-input" name="query_input" onmouseout="this.value = ''; this.blur();">
                                 </form>
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 

@@ -373,3 +373,29 @@ class MyPage(generic.ListView):
            
         return "favorite.html"
         
+class SearchBar(generic.ListView):
+    model = Post
+    paginate_by = 4
+    def get_queryset(self):
+        query_input = self.request.GET.get('query_input')
+        return Post.objects.filter(title__icontains = query_input).order_by('-created_on')
+    # context_object_name = "post_list"
+    
+   
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        items = list(Post.objects.all())
+        
+        context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
+        context['section_title'] = 'Search Results'
+        context['categories'] = CATEGORY
+                       
+        return context
+
+    def get_template_names(self):
+        if self.request.htmx:
+            
+            return "partials/post_list_items.html"
+           
+        return "favorite.html"

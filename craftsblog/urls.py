@@ -7,6 +7,7 @@ urlpatterns = [
     path('about/', views.AboutPage.as_view(), name='about_page'),
     path('contact/', views.ContactPage.as_view(), name='contact_page'),
     path('favorite/', views.FavoritePage.as_view(), name='favorite_page'),
+    path('search/', views.SearchBar.as_view(), name='search_bar'),
     path('add_item/', views.AddItem.as_view(), name='add_item'),
     path('delete/<slug:slug>/', views.DeleteItem.as_view(), name='delete_item'),
     path('my_page/', views.MyPage.as_view(), name='my_page'),
