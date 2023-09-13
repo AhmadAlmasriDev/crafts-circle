@@ -47,10 +47,19 @@
             <hr>
             <div class="item-user-interaction flex-container">
                 {% if 'my_page' in request.path %}
-                <div class="edit-button-container ">
-                    
-                    <a href="{% url 'edit_item' post.slug %}">Edit</a>
+                <div class="buttons-container flex-container">
 
+                    <div class="edit-button  button">
+                        
+                        <a class="" href="{% url 'edit_item' post.slug %}">Edit</a>
+    
+                    </div>
+                    <form class = "delete-button" action="{% url 'delete_item' post.slug %}" method="POST">
+                        {% csrf_token %}
+                        
+                            <button type="submit" name="item_id" value="{{post.slug}}" class="button">Delete
+                            </button>
+                    </form>
                 </div>
                 {% endif %}
                 <div class="item-likes">

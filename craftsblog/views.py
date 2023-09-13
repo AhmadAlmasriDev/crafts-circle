@@ -273,7 +273,7 @@ class AddItem(View):
 
            
             
-            return HttpResponseRedirect(reverse('add_item'))
+            return HttpResponseRedirect(reverse('my_page'))
         else:
             add_item_form = AddItemForm()
 
@@ -330,6 +330,18 @@ class EditItem(View):
         #         "add_item_form": add_item_form,
         #     },
         # )
+
+
+class DeleteItem(View):
+
+    def post(self, request, slug):
+        queryset = Post.objects.filter(status=1)
+        item = get_object_or_404(queryset, slug=slug)
+        item.delete()
+
+
+        return HttpResponseRedirect(reverse('my_page'))
+
 
 
 class MyPage(generic.ListView):
