@@ -8,14 +8,14 @@
     <div class="add-item-container">
 
         <div class="add-item-title">
-            <h2>Add an Item</h2>
+            <h2>Edit an Item</h2>
             <!-- <p>Fill the form to add your item.</p> -->
     
         </div>
         
         
         
-        <form class="add" method="POST" action="{% url 'add_item' %}" enctype="multipart/form-data">
+        <form class="add" method="POST"  enctype="multipart/form-data">
             {% csrf_token %}
             
             {{ add_item_form | crispy}}

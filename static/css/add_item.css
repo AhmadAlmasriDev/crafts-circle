@@ -345,8 +345,11 @@ input[type="file"] {
     height:unset;
     color: unset;
 }    
-        
-   
+#div_id_listing_image div,
+#div_id_slider_image div{
+    font-size: 14px;
+}        
+
 main input:focus{
     border: #6b7280 solid 2px;
 }

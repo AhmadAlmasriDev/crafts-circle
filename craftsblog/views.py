@@ -300,33 +300,36 @@ class EditItem(View):
             "edit_item.html",  
             {
                 "add_item_form": add_item_form,
-                "item": item,
+                
                 },
         )
 
-    # def post(self, request):
-    #     add_item_form = AddItemForm(request.POST, request.FILES)        
+    def post(self, request, slug):
+        queryset = Post.objects.filter(status=1)
+        
+        item = get_object_or_404(queryset, slug=slug)
+        add_item_form = AddItemForm(request.POST,  request.FILES, instance=item)        
        
-    #     if add_item_form.is_valid():
-    #         add_item_form.instance.author = request.user
-    #         add_item_form.instance.slug = slugify(request.POST.get('title'))
-    #         item = add_item_form.save(commit=False)
-    #         item.save()
+        if add_item_form.is_valid():
+            add_item_form.instance.author = request.user
+            add_item_form.instance.slug = slugify(request.POST.get('title'))
+            item = add_item_form.save(commit=False)
+            item.save()
 
            
             
-    #         return HttpResponseRedirect(reverse('add_item'))
-    #     else:
-    #         add_item_form = AddItemForm()
+            return HttpResponseRedirect(reverse('my_page'))
+        # else:
+        #     add_item_form = AddItemForm()
 
-    #     return render(
-    #         request,
-    #         "add_item.html",
-    #         {
+        # return render(
+        #     request,
+        #     "edit_item.html",
+        #     {
                 
-    #             "add_item_form": add_item_form,
-    #         },
-    #     )
+        #         "add_item_form": add_item_form,
+        #     },
+        # )
 
 
 class MyPage(generic.ListView):
