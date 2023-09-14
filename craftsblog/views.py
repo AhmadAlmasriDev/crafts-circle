@@ -5,6 +5,7 @@ from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
 from .forms import CommentForm, ContactMessageForm, AddItemForm
 from django.utils.text import slugify
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from .mixins import CheckManagerMixin
 import random
 
@@ -249,8 +250,8 @@ class ContactPage(View):
             },
         )
 
-class AddItem(CheckManagerMixin, View):
-    
+class AddItem(PermissionRequiredMixin , View):
+    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     def get(self, request):
               
         add_item_form = AddItemForm()
@@ -288,8 +289,8 @@ class AddItem(CheckManagerMixin, View):
         )
 
 
-class EditItem(CheckManagerMixin, View):
-    
+class EditItem(PermissionRequiredMixin , View):
+    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     def get(self, request, slug):
         queryset = Post.objects.filter(status=1)
         
@@ -345,7 +346,8 @@ class EditItem(CheckManagerMixin, View):
 
 
 
-class MyPage(CheckManagerMixin, generic.ListView):
+class MyPage(PermissionRequiredMixin , generic.ListView):
+    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     model = Post
     paginate_by = 4
     def get_queryset(self):
@@ -401,8 +403,8 @@ class SearchBar(generic.ListView):
         return "favorite.html"
 
 
-class DeleteItem(CheckManagerMixin, View):
-    
+class DeleteItem(PermissionRequiredMixin , View):
+    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     def get(self, request, slug):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
