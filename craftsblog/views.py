@@ -5,7 +5,6 @@ from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
 from .forms import CommentForm, ContactMessageForm, AddItemForm
 from django.utils.text import slugify
-from django.contrib.auth.mixins import PermissionRequiredMixin
 from .mixins import CheckManagerMixin
 import random
 
@@ -250,8 +249,8 @@ class ContactPage(View):
             },
         )
 
-class AddItem(PermissionRequiredMixin , View):
-    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
+class AddItem(CheckManagerMixin , View):
+    # permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     def get(self, request):
               
         add_item_form = AddItemForm()
@@ -289,8 +288,8 @@ class AddItem(PermissionRequiredMixin , View):
         )
 
 
-class EditItem(PermissionRequiredMixin , View):
-    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
+class EditItem(CheckManagerMixin , View):
+    # permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     def get(self, request, slug):
         queryset = Post.objects.filter(status=1)
         
@@ -346,8 +345,9 @@ class EditItem(PermissionRequiredMixin , View):
 
 
 
-class MyPage(PermissionRequiredMixin , generic.ListView):
-    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
+class MyPage(CheckManagerMixin , generic.ListView):
+    # permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post "
+    
     model = Post
     paginate_by = 4
     def get_queryset(self):
@@ -403,8 +403,8 @@ class SearchBar(generic.ListView):
         return "favorite.html"
 
 
-class DeleteItem(PermissionRequiredMixin , View):
-    permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
+class DeleteItem(CheckManagerMixin , View):
+    # permission_required = "craftsblog.view_post, craftsblog.delete_post, craftsblog.change_post, craftsblog.add_post, "
     def get(self, request, slug):
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
