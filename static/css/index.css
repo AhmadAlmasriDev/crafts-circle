@@ -351,6 +351,18 @@ div.alert-danger{
     display: none;
 }
 /* ---------------------------Items Section---------------------------------- */
+.section-title-container{
+   max-width: 100%;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+div.add-item-container{
+    width: 100%;
+    justify-content: center;
+    margin-right: 15px;
+    margin-bottom: 32px;
+}
 .buttons-container{
     justify-content: left;
 }
@@ -360,9 +372,19 @@ div.alert-danger{
     border-radius: 10px;
     color: #334155;
     cursor: pointer;
-    font-size: 19px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 19px;
+}
+.add-item-button{
+    background-color:#6b72804d;  
+}
+.add-item-button:hover{
+    background-color: rgb(0, 128, 0);
+    box-shadow: inset 2px 2px 6px #33415580;
+}
+.add-item-button:hover{
+    color: #fff;
 }
 .delete-button,
 .edit-button {
@@ -370,7 +392,6 @@ div.alert-danger{
     background-color:#6b72804d;
 }  
 .delete-button:hover{
-    margin-left: 16px;
     background-color: rgb(255, 0, 0);
     
     
@@ -408,6 +429,7 @@ aside{
     background-color: #6b72804d;
     border: #6b7280 solid 2px;
     border-radius: 15px;
+    max-width: 370px;
     /* margin: 0 16px ; */
 }
 .no-items h2{
@@ -424,6 +446,7 @@ aside{
 }
 .all-items-container{
     margin-top: 16px;
+    width: 100%;
 }
 .item-container{
     margin-bottom: 64px;
@@ -563,6 +586,22 @@ footer span{
 
     /* Items--------------------------------- */
 
+    .buttons-container .button{
+        
+        font-size: 19px;
+    }
+
+    .section-title-container{
+       
+        flex-direction: row;
+        
+     }
+     div.add-item-container{
+        
+         justify-content: flex-end;
+         
+         margin-bottom: 32px;
+     }
     .grid-container{
         width: 100%;
         
@@ -694,6 +733,7 @@ footer span{
     }
   
 }
+
 /* ---------------------------768px------------------------------------------ */
 
 

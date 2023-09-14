@@ -9,7 +9,16 @@
     <div class="main-panel v-flex-container">
         
         <div class="all-items-container">
-            
+            <div class="section-title-container flex-container">
+
+                <h2 class = "section-title">{{section_title}}</h2>
+                {% if 'my_page' in request.path %}
+                <div class="buttons-container add-item-container flex-container">
+                    <a class= "add-item-button button" href="{% url 'add_item' %}">Add Item</a>
+
+                </div>
+                {% endif %}
+            </div>
             {% if not page_obj %}
             <div class="no-items-container flex-container">
                 <div class="no-items flex-container">
@@ -18,8 +27,7 @@
                 </div>
 
             </div>
-            {% else %}
-            <h2 class = "section-title">{{section_title}}</h2>
+            
             {% endif %}
             <div class="grid-container">
                 {% include "partials/post_list_items.html"%}
