@@ -42,7 +42,7 @@
                     <h2>{{post.title}}</h2>
                 </div>
                 <div class="item-sub">
-                    <span>{{post.content|striptags|slice:":50"}} ...</span>
+                    <span>{{post.content|striptags|truncatewords:25}}</span>
                 </div>
 
             </a>

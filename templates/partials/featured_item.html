@@ -19,7 +19,7 @@
     </a>
     <a href="{% url 'item' featured_post.slug %}">
         <div class="most-view-sub">
-            <span>{{featured_post.content|safe|slice:":100"}}</span> ...
+            <span>{{featured_post.content|safe|truncatewords:25}}</span>
         </div>
     </a>
     <div class="item-user-info flex-container">
