@@ -5,6 +5,7 @@ from .models import Post, CATEGORY, Comment, ContactMessage
 from django.db.models import Count
 from .forms import CommentForm, ContactMessageForm, AddItemForm
 from django.utils.text import slugify
+from .mixins import CheckManagerMixin
 import random
 
 class PostList(generic.ListView):
@@ -248,7 +249,7 @@ class ContactPage(View):
             },
         )
 
-class AddItem(View):
+class AddItem(CheckManagerMixin, View):
     
     def get(self, request):
               
@@ -287,7 +288,7 @@ class AddItem(View):
         )
 
 
-class EditItem(View):
+class EditItem(CheckManagerMixin, View):
     
     def get(self, request, slug):
         queryset = Post.objects.filter(status=1)
@@ -344,7 +345,7 @@ class EditItem(View):
 
 
 
-class MyPage(generic.ListView):
+class MyPage(CheckManagerMixin, generic.ListView):
     model = Post
     paginate_by = 4
     def get_queryset(self):
@@ -400,7 +401,7 @@ class SearchBar(generic.ListView):
         return "favorite.html"
 
 
-class DeleteItem(View):
+class DeleteItem(CheckManagerMixin, View):
     
     def get(self, request, slug):
         queryset = Post.objects.filter(status=1)

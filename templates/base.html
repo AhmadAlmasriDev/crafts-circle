@@ -87,15 +87,22 @@
                                             <span id="user-menu-name">Hi {{user.username}}</span>
                                         </li>
                                         <hr>
-                                        <li>
-                                            <a class="link" href="{% url 'add_item' %}">Add Item</a>
-                                        </li>
+                                        {% for group in user.groups.all %}
+                                            {% if group.name == 'manager' %}
+                                            <li>
+                                                <a class="link" href="{% url 'add_item' %}">Add Item</a>
+                                            </li>
+                                            <li>
+                                                <a class="link" href="{% url 'my_page' %}">My Page</a>
+                                            </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                        
                                         <li>
                                             <a class="link" href="{% url 'favorite_page' %}">Favorites</a>
                                         </li>
-                                        <li>
-                                            <a class="link" href="{% url 'my_page' %}">My Page</a>
-                                        </li>
+                                        
+                                        
                                         <hr>
                                         <li>
                                             <a class="link" href="{% url 'account_logout' %}">Log Out</a>
@@ -114,8 +121,9 @@
             </div>
         </header>
         <main class="flex-container">
+           
             {% block content %}
-                <!-- Content Goes here -->
+            <!-- Content Goes here -->
             {% endblock content %}
 
 
