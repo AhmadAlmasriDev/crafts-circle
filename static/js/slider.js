@@ -6,7 +6,7 @@ showSlides(slideIndex);
 let autoplayInterval = setInterval(function() {
 
   
-  plusSlides(1)
+  document.getElementById("next").click();
   
  
 }, 5000); 
