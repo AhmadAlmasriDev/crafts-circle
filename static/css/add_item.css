@@ -281,14 +281,14 @@ li.register{
 }
 main{
     margin-top:128px ;
-    height: 75vh;
+    height: 100%;
 }
 .add-item-container{
     border: solid 2px #6b72804d;
     border-radius: 15px;
     padding: 16px;
     width: 100%;
-    /* margin-top: 128px; */
+    margin-bottom: 128px;
     
 }
 .controls{
@@ -303,7 +303,7 @@ main{
 
 .add-item-main-container{
     padding: 0 16px;
-    margin-top: 64px;
+    
     
 }
 
@@ -544,7 +544,8 @@ footer span{
     
     .add-item-main-container{
         padding: 0 32px;
-        margin-top: 128px;
+        
+
         
     }
     
