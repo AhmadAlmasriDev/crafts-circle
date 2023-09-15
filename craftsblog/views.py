@@ -7,6 +7,8 @@ from .forms import CommentForm, ContactMessageForm, AddItemForm
 from django.utils.text import slugify
 from .mixins import CheckManagerMixin
 from taggit.models import Tag
+
+from django.contrib import messages
 import random
 
 class PostList(generic.ListView):
@@ -321,11 +323,12 @@ class AddItem(CheckManagerMixin , View):
             item = add_item_form.save(commit=False)
             item.save()
             add_item_form.save_m2m()
-
+            messages.success(request, 'Form submission successful')
            
             
             return HttpResponseRedirect(reverse('my_page'))
         else:
+            messages.error(request, 'Form submission failed')
             add_item_form = AddItemForm()
 
         return render(
@@ -368,12 +371,14 @@ class EditItem(CheckManagerMixin , View):
             item = add_item_form.save(commit=False)
             item.save()
             add_item_form.save_m2m()
-            
+            messages.success(request, 'Form submission successful')
 
            
             
             return HttpResponseRedirect(reverse('my_page'))
-        # else:
+        else:
+            messages.error(request, 'Form submission failed')
+            add_item_form = AddItemForm(request.POST,  request.FILES, instance=item)  
         #     add_item_form = AddItemForm()
 
         # return render(
@@ -479,5 +484,5 @@ class DeleteItem(CheckManagerMixin , View):
         item.delete()
         Tag.objects.filter(post=None).delete()
         
-
+        
         return HttpResponseRedirect(reverse('my_page'))     
