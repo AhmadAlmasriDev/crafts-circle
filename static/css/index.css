@@ -712,6 +712,13 @@ footer span{
         border-radius: 15px;
         background-color:#6b72804d;
     }
+    .side-tags{
+        margin-bottom: 128px;
+    }
+    .side-tags .no-tags{
+        font-size: 16px;
+        font-weight: 500;
+    }
     .side-tags a{
         line-height: 200%;
         padding: 2px 6px;

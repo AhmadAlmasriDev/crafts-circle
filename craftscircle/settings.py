@@ -73,6 +73,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'craftsblog',
     'django_htmx',
+    'taggit',
 ]
 SITE_ID = 1
 ACCOUNT_FORMS = {

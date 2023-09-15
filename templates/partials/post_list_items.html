@@ -13,6 +13,8 @@
         <div class="item-container" hx-get = "{% url 'my_page'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         {% elif 'search' in request.path %}
         <div class="item-container" hx-get = "{% url 'search_bar'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
+        {% elif 'tags' in request.path %}
+        <div class="item-container" hx-get = "{% url 'tags' tag %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         
         {% endif%}   
            

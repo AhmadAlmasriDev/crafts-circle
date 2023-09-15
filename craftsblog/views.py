@@ -6,6 +6,7 @@ from django.db.models import Count
 from .forms import CommentForm, ContactMessageForm, AddItemForm
 from django.utils.text import slugify
 from .mixins import CheckManagerMixin
+from taggit.models import Tag
 import random
 
 class PostList(generic.ListView):
@@ -19,11 +20,13 @@ class PostList(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
+        tags = Tag.objects.all()
 
         context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
         context['featured_post'] = Post.objects.annotate(num_likes=Count('likes')).latest('num_likes')
         context['categories'] = CATEGORY
+        context['tags'] = tags
         
                
         return context
@@ -69,7 +72,7 @@ class CategoryFilter(generic.ListView):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         category = self.kwargs['category']
-        
+        tags = Tag.objects.all()
 
         context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
@@ -77,6 +80,46 @@ class CategoryFilter(generic.ListView):
         context['categories'] = CATEGORY
         
         context['category'] = category
+        context['tags'] = tags
+        
+        return context
+
+    
+    def get_template_names(self):
+        if self.request.htmx:
+            
+            return "partials/post_list_items.html"
+           
+        return "index.html"
+
+
+class Tags(generic.ListView):
+    model = Post
+
+    paginate_by = 4
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        tag_name = self.kwargs['tag']
+        queryset = Post.objects.filter(tags__name=tag_name).order_by("-created_on")
+        return queryset
+        
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        items = list(Post.objects.all())
+        tag_name = self.kwargs['tag']
+        tags = Tag.objects.all()
+        
+
+        context['slider_posts'] = random.sample(items, 5)
+        context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[1:5]
+        
+        context['categories'] = CATEGORY
+        
+       
+        context['tags'] = tags
+        context['tag'] = tag_name
         
         return context
 
@@ -99,7 +142,7 @@ class PostDetail(View):
         comments = post.comments.filter(approved=True).order_by("-created_on")
         number_of_comments = post.comments.filter(approved=True).order_by("-created_on").count()
         not_approved_posts = post.comments.filter(approved=False)
-
+        tags = Tag.objects.all()
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -117,6 +160,7 @@ class PostDetail(View):
                 "liked": liked,
                 "top_posts": top_posts,
                 "comment_form": comment_form,
+                "tags": tags,
             },
         )
 
@@ -126,7 +170,7 @@ class PostDetail(View):
         top_posts = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         comments = post.comments.filter(approved=True).order_by("-created_on")
         not_approved_posts = post.comments.filter(approved=False)
-
+        tags = Tag.objects.all()
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
             liked = True
@@ -154,6 +198,8 @@ class PostDetail(View):
                 "liked": liked,
                 "top_posts": top_posts,
                 "comment_form": comment_form,
+                "tags": tags,
+
             },
         )
 
@@ -194,10 +240,12 @@ class FavoritePage(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
-        
+        tags = Tag.objects.all()
+
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         context['section_title'] = 'Favorite Items'
         context['categories'] = CATEGORY
+        context['tags'] = tags
                        
         return context
 
@@ -269,8 +317,10 @@ class AddItem(CheckManagerMixin , View):
         if add_item_form.is_valid():
             add_item_form.instance.author = request.user
             add_item_form.instance.slug = slugify(request.POST.get('title'))
+            
             item = add_item_form.save(commit=False)
             item.save()
+            add_item_form.save_m2m()
 
            
             
@@ -314,8 +364,11 @@ class EditItem(CheckManagerMixin , View):
         if add_item_form.is_valid():
             add_item_form.instance.author = request.user
             add_item_form.instance.slug = slugify(request.POST.get('title'))
+            
             item = add_item_form.save(commit=False)
             item.save()
+            add_item_form.save_m2m()
+            
 
            
             
@@ -362,10 +415,12 @@ class MyPage(CheckManagerMixin , generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
-        
+        tags = Tag.objects.all()
+
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         context['section_title'] = 'My Page'
         context['categories'] = CATEGORY
+        context['tags'] = tags
                        
         return context
 
@@ -388,10 +443,11 @@ class SearchBar(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
-        
+        tags = Tag.objects.all()
         context['top_posts'] = Post.objects.annotate(num_likes=Count('likes')).order_by('-num_likes')[0:5]
         context['section_title'] = 'Search Results'
         context['categories'] = CATEGORY
+        context['tags'] = tags
                        
         return context
 
@@ -421,6 +477,7 @@ class DeleteItem(CheckManagerMixin , View):
         queryset = Post.objects.filter(status=1)
         item = get_object_or_404(queryset, slug=slug)
         item.delete()
-
+        Tag.objects.filter(post=None).delete()
+        
 
         return HttpResponseRedirect(reverse('my_page'))     

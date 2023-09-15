@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from taggit.managers import TaggableManager
 
 STATUS = ((0,"Draft"),(1,"Published"))
 CATEGORY = ((0,"Books"),(1,"Lamps"),(2,"Interior"),(3,"Other"))
@@ -19,6 +20,7 @@ class Post(models.Model):
     content = models.TextField()
     excerpt = models.TextField(blank=True)
     created_on = models.DateTimeField(auto_now_add=True)
+    tags = TaggableManager()
     status = models.IntegerField(choices = STATUS, default=0)
     likes = models.ManyToManyField(
         User, related_name='item_likes', blank=True)
@@ -35,7 +37,7 @@ class Post(models.Model):
     def number_of_comments(self):
         return self.comments.filter(approved=True).count()
 
-  
+
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")

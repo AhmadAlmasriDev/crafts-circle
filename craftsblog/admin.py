@@ -5,12 +5,15 @@ from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Post)
 class PostAdmin(SummernoteModelAdmin):
-    list_display = ('title', 'category', 'slug', 'status', 'created_on')
+    list_display = ('title', 'category', 'slug', 'get_tags', 'status', 'created_on')
     search_fields = ['title', 'content', 'category']
     list_filter = ('status', 'created_on', 'category')
     prepopulated_fields = {'slug': ('title',)}
     
     summernotefields = ('content')
+
+    def get_tags(self, obj):
+        return ", ".join( o for o in obj.tags.names())
 
 
 @admin.register(Comment)
