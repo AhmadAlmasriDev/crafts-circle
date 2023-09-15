@@ -1,26 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap');
-
-
 /* font-family: 'M PLUS Rounded 1c', sans-serif; */
-
 /* colors
 Text
 Charcoal :              #334155
-
 Background
 Seasalt:                #f8f8f8f8
-
 Highlight, hover
 Anti-flash white:       #f3f4f6
 Slate gray:             #6b7280
-
 Footer
 Rich black:             #111827
-
-
 */
-
 /* ---------------------------Defaults--------------------------------------- */
+
 * {
     margin: 0;
     padding: 0;
@@ -32,7 +24,6 @@ body{
     color: #334155 ;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background-color: #f8f8f8f8;
-    
 }
 
 h2{
@@ -57,7 +48,6 @@ a {
 .main-wrapper{
     min-height: 100vh;
     position: relative;
-    
 }
 
 .flex-container {
@@ -85,10 +75,12 @@ a {
 ul li{
     padding:8px 16px;
 }
+
 .navigation a{
     font-size: 150%;
     color:#334155;
 }
+
 .image-container {
     width: 100%;
     border-radius: 15px;
@@ -133,6 +125,7 @@ hr{
 }
 
 /* ---------------------------Header----------------------------------------- */
+
 #logo img{
     height: 60px;
 }
@@ -150,11 +143,9 @@ header {
     background-color: #fff;
     border-bottom: 1px solid #6b728033;
     margin-bottom: 64px;
- 
 }
 
 #logo{
-    /* align-items:flex-start; */
     justify-content:center;
 }
 
@@ -218,6 +209,7 @@ li.register{
     font-size: 24px;
     padding:2px 6px;
 }
+
 .button{
     font-size: 16px;
     margin-top: 8px;
@@ -226,12 +218,14 @@ li.register{
     border-radius: 5px;
     color: white;
 }
+
 .button:hover{
     background-color:#6b7280;
     color: #111827;
 }
 
 /* Search--------------------------- */
+
 .search-box{
     position: relative;
 }
@@ -276,42 +270,42 @@ li.register{
 }
 
 /* ---------------------------Main------------------------------------------- */
+
 .asteriskField{
     display: none;
 }
+
 main{
     margin-top:128px ;
     height: 100%;
 }
+
 .add-item-container{
     border: solid 2px #6b72804d;
     border-radius: 15px;
     padding: 16px;
     width: 100%;
     margin-bottom: 128px;
-    
 }
+
 .controls{
     padding-bottom: 12px;
 }
+
 .control-group{
     width: 100%;
 }
+
 .add-item-title{
     margin-bottom:32px;
 }
 
 .add-item-main-container{
     padding: 0 16px;
-    
-    
 }
-
-
 
 main input,
 main select{
-    /* margin-bottom: 16px; */
     background-color: #e8f0fe;
     border: #6b72804d solid 2px;
     padding: 8px;
@@ -320,22 +314,22 @@ main select{
     height:36px;
     color: #334155;
     width: 100%;
-} 
+}
+ 
 main select {
     max-width: 100px;
 }
+
 input[type="file"] {
     width: 100%;
-    /* margin-bottom: 16px; */
-    
 }
 
 #div_id_content{
     width:100%;
 }
+
 #id_slider_image,
 #id_listing_image{
-    
     margin-bottom: 8px;
     background-color: unset;
     border: unset;
@@ -344,22 +338,22 @@ input[type="file"] {
     max-width: unset;
     height:unset;
     color: unset;
-}    
+}
+    
 #div_id_listing_image div,
 #div_id_slider_image div{
     font-size: 14px;
-}        
-
+}
+        
 main input:focus{
     border: #6b7280 solid 2px;
 }
 
-
 main h1{
     margin-bottom: 16px;
 }
+
 main .button{
-    
 }
 
 /* ---------------------------Footer----------------------------------------- */
@@ -410,26 +404,20 @@ footer span{
 
 /* ---------------------------Responsiveness--------------------------------- */
 
-
 /* ---------------------------480px------------------------------------------ */
 
 @media screen and (min-width: 480px) {
-
     .add-item-main-container{
         padding: 0 32px;
-        
     }
 
-        
-
+}
 
     /* Item---------------------------------- */
-    
 
 /* ---------------------------768px------------------------------------------ */
 
 @media screen and (min-width: 768px){
-
     /* Header-------------------------------- */
 
     .main-container{
@@ -439,7 +427,7 @@ footer span{
     #right-nav-menu .search-box{
         display: block;
     }
-   
+
     #center-nav-menu .search-box{
         display: none;
     }
@@ -532,28 +520,20 @@ footer span{
         font-size: 20px;
         padding:2px 6px;
     }
-    
+
     /* Items--------------------------------- */
+
     .add-item-container{
         max-width: 700px;
         padding: 32px;
-        
-        
     }
 
-    
     .add-item-main-container{
         padding: 0 32px;
-        
-
-        
     }
-    
-    
-    
-     
+
     /* Footer--------------------------------- */
-    
+
     .copy-info{
         color: #6b7280;
         display:flex;
@@ -562,14 +542,14 @@ footer span{
         align-items: center;
         justify-content: center;
     }
+
 }
 
 /* ---------------------------1024px----------------------------------------- */
 
 @media screen and (min-width: 1024px){
-
     /* Header-------------------------------- */
-    
+
     #center-nav-menu a {
         font-size: 26px;
         font-weight: 400;
@@ -580,10 +560,9 @@ footer span{
     #right-nav-menu li{
         padding: 6px 8px;
     }
-    
+
     .search-box:hover input{
         width: 180px;
-        
     }
 
     .search-box i{
@@ -593,11 +572,7 @@ footer span{
     .search-input {
         font-size: 16px;
     }
-    
+
     /* Items--------------------------------- */
-    
-   
-    
+
 }
-
-

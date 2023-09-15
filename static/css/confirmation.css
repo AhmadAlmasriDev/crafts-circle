@@ -1,26 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;500;700&display=swap');
-
-
 /* font-family: 'M PLUS Rounded 1c', sans-serif; */
-
 /* colors
 Text
 Charcoal :              #334155
-
 Background
 Seasalt:                #f8f8f8f8
-
 Highlight, hover
 Anti-flash white:       #f3f4f6
 Slate gray:             #6b7280
-
 Footer
 Rich black:             #111827
-
-
 */
-
 /* ---------------------------Defaults--------------------------------------- */
+
 * {
     margin: 0;
     padding: 0;
@@ -28,11 +20,11 @@ Rich black:             #111827
     box-sizing: border-box;
 }
 
+
 body{
     color: #334155 ;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     background-color: #f8f8f8f8;
-    
 }
 
 h2{
@@ -57,7 +49,6 @@ a {
 .main-wrapper{
     min-height: 100vh;
     position: relative;
-    
 }
 
 .flex-container {
@@ -85,10 +76,12 @@ a {
 ul li{
     padding:8px 16px;
 }
+
 .navigation a{
     font-size: 150%;
     color:#334155;
 }
+
 .image-container {
     width: 100%;
     border-radius: 15px;
@@ -120,7 +113,8 @@ hr{
     margin-left: 2px;
 }
 
-.item-likes, .item-comments{
+.item-likes, 
+.item-comments{
     margin:0 10px
 }
 
@@ -133,6 +127,7 @@ hr{
 }
 
 /* ---------------------------Header----------------------------------------- */
+
 #logo img{
     height: 60px;
 }
@@ -150,11 +145,9 @@ header {
     background-color: #fff;
     border-bottom: 1px solid #6b728033;
     margin-bottom: 64px;
- 
 }
 
 #logo{
-    /* align-items:flex-start; */
     justify-content:center;
 }
 
@@ -219,8 +212,8 @@ li.register{
     padding:2px 6px;
 }
 
-
 /* Search--------------------------- */
+
 .search-box{
     position: relative;
 }
@@ -271,20 +264,14 @@ main{
     height: 75vh;
 }
 
-
 .confirm-container button{
     line-height: 26px;
     font-size: 26px;
 }
 
-
-
 .confirm-main-container{
 padding: 0 8px;
-
 }
-
-
 
 .confirm-container{
     position: relative;
@@ -292,17 +279,19 @@ padding: 0 8px;
     border-radius: 15px;
     padding: 40px 32px 32px 32px;
 }
+
 .close-button{
     position: absolute;
     font-size: 24px;
     line-height: 24px;
     top: 8px;
     right: 8px;
-    
 }
+
 .close-button:hover {
     color: #6b72804d;
 }
+
 .confirm-info h2{
     font-size: 16px;
     text-align: center;
@@ -315,6 +304,7 @@ padding: 0 8px;
     text-align: center;
     margin-bottom: 32px;
 }
+
 .button{
     font-size: 16px;
     margin-top: 8px;
@@ -323,14 +313,13 @@ padding: 0 8px;
     border: #6b72804d solid 2px;
     border-radius: 5px;
     color: #fff;
-    
 }
+
 .button:hover{
     background-color: rgb(255, 0, 0);
     color: white;
     box-shadow: inset 2px 2px 6px #6b72804d
 }
-
 
 /* ---------------------------Footer----------------------------------------- */
 
@@ -380,17 +369,6 @@ footer span{
 
 /* ---------------------------Responsiveness--------------------------------- */
 
-
-/* ---------------------------480px------------------------------------------ */
-
-@media screen and (min-width: 480px) {
-
-    
-
-    /* Item---------------------------------- */
-    
-    
-
 /* ---------------------------768px------------------------------------------ */
 
 @media screen and (min-width: 768px){
@@ -404,7 +382,7 @@ footer span{
     #right-nav-menu .search-box{
         display: block;
     }
-   
+
     #center-nav-menu .search-box{
         display: none;
     }
@@ -497,35 +475,27 @@ footer span{
         font-size: 20px;
         padding:2px 6px;
     }
-    
-    /* Items--------------------------------- */
-    
 
-    
-    
+    /* Items--------------------------------- */
+
     .confirm-main-container{
-    padding: 0 16px;
-    
+         padding: 0 16px;
     }
-    
-    
-    
+
     .confirm-container{
-      
         padding: 40px ;
     }
-    
+
     .confirm-info h2{
         font-size: 23px;
-        
     }
-    
+
     .confirm-info h3{
         font-size: 27px;
-       
     }
+
     /* Footer--------------------------------- */
-    
+
     .copy-info{
         color: #6b7280;
         display:flex;
@@ -534,6 +504,7 @@ footer span{
         align-items: center;
         justify-content: center;
     }
+
 }
 
 /* ---------------------------1024px----------------------------------------- */
@@ -541,7 +512,7 @@ footer span{
 @media screen and (min-width: 1024px){
 
     /* Header-------------------------------- */
-    
+
     #center-nav-menu a {
         font-size: 26px;
         font-weight: 400;
@@ -552,10 +523,9 @@ footer span{
     #right-nav-menu li{
         padding: 6px 8px;
     }
-    
+
     .search-box:hover input{
         width: 180px;
-        
     }
 
     .search-box i{
@@ -565,11 +535,5 @@ footer span{
     .search-input {
         font-size: 16px;
     }
-    
-    /* Items--------------------------------- */
-    
-   
-    
+
 }
-
-
