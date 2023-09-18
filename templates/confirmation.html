@@ -1,10 +1,8 @@
 {% extends "base.html" %}
 {% load static %}
 {% block css %}<link rel="stylesheet" href="{% static 'css/confirmation.css' %}">{% endblock%}
+<!-- _________________________The delete confirmation_____________________ -->
 {% block content %}
-
-    
-
 <section id = "items"  class="main-container flex-container">
     <div class="main-panel v-flex-container confirm-main-container">
         <form class = "confirm-container" action="{% url 'delete_item' post.slug %}" method="POST">
@@ -19,14 +17,10 @@
                 <a  href= "{% url 'my_page'%}" class="close-button" aria-label="close"><i class="fa-solid fa-xmark"></i></a>
             </div>
         </form>
-       
     </div>
-       
 </section>
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/menu.js' %}"></script>
-    
-    
 {% endblock %}    
     
