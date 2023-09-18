@@ -11,22 +11,23 @@ document.addEventListener('click', (e) => {
    if (!barMenuButton.contains(e.target) & !searchBar.contains(e.target)) barMenu.classList.add('display-non')
  })
 
-// ______ Hide and toggle the menus ____________________________ 
-function toggleMenu(target) {
-    let x = document.getElementById(target);
-    if (x.classList.contains("display-non")) {
-      x.classList.remove("display-non")
-    } else {
-      x.classList.add("display-non")
-    }
+// ______ Menu toggle __________________________________________
+
+let x = document.getElementById(target);
+if (x.classList.contains("display-non")) {
+  x.classList.remove("display-non")
+} else {
+  x.classList.add("display-non")
 }
+
+// ______ Menu hide ____________________________________________
 
 function hideMenu(target) {
     let x = document.getElementById(target);
     x.classList.add("display-non")
 }
 
-// ______ Cloase the modals ____________________________________ 
+// ______ Modal close __________________________________________ 
 
 function closeModal(){
   let x = document.getElementById("info-modal");

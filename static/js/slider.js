@@ -1,25 +1,25 @@
-// Slide---------------------------------------
+
+// ______ Slide ________________________________________________
+
 let slideIndex = 1;
 showSlides(slideIndex);
 
-// auto scroll
-let autoplayInterval = setInterval(function() {
+// ______ Auto scroll __________________________________________
 
-  
+let autoplayInterval = setInterval(function() {
   plusSlides(1);
-  
- 
 }, 5000); 
 
+// ______ Next/previous controls _______________________________
 
-// Next/previous controls
 function plusSlides(n) {
   showSlides(slideIndex += n);
 }
 
 
 
-// Thumbnail image controls
+// ______ Thumbnail image controls _____________________________
+
 function currentSlide(n) {
   showSlides(slideIndex = n);
 }
