@@ -30,7 +30,7 @@
                 <div class="image-container item-image">
                     <h3 id="item-category">{{post.get_category_display}}</h3>
                     {% if "placeholder" in post.listing_image.url %}
-                        <img src="{% static 'images/image-1.jpg' %}" alt="Place holder">
+                        <img src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044564/place_holder_rqjtrx.webp" alt="Place holder">
                     {% else %}
                     <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
                     {% endif %}
