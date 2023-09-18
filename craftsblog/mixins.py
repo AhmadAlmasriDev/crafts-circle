@@ -1,5 +1,4 @@
 from django.shortcuts import reverse
-
 from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
@@ -10,5 +9,4 @@ class CheckManagerMixin:
         if request.user.groups.filter(name='manager').exists():
             return super(CheckManagerMixin, self).dispatch(request, *args, **kwargs)
         else:
-            
             return redirect('home')
