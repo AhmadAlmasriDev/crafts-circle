@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block css %}<link rel="stylesheet" href="{% static 'css/about.css' %}">{% endblock%} 
+<!-- _________________________The about page______________________________ -->
 {% block content %}
 <section id="hero-section" class="main-container">
     <div class="about-main-container flex-container">
         <div class="about-container flex-container">
-            
             <div class="about-text">
+                <!-- The main text_______________ -->
                 <h2>Crafts Circle</h2>
                 <p>
                     Is a little project that lets you post your handmade items, so that other handmade lovers can comment and rate them.
@@ -14,15 +15,14 @@
                 <p>
                     It is also a place where you can find potintial clients or fans, depending on your goals.
                 </p>
-                
+                <p>
+                    We hope that you will like our platform, and that you will recomend it to your fellow handmade artisans.
+                </p>
             </div>
-            
         </div>
-
-
     </div>
+    <!-- The background slider_______ -->
     <div class="slideshow-container v-flex-container">
-        
         <!-- Slideshow container -->
         <div class="slideshow">
             <!-- Full-width images with number and caption text -->
@@ -31,26 +31,20 @@
                 <div class="image-container">
                     <img src="{{ slider.slider_image.url }}" alt="{{slider.title}}">
                 </div>
-                
             </div>
             {% endfor %}
             <div class="nav-dots display-non">
                 {% for slider in sliders %}
                 <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
-                
                 {% endfor %}
             </div>
-        
             <!-- Next and previous buttons -->
             <a class="prev display-non" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" class="next display-non" onclick="plusSlides(1)">&#10095;</a>
         </div>
         <br>
-        
         <!-- The dots/circles -->
-        
     </div>
-
 </section>
 <section id = "items"  class="main-container flex-container">
     <div class="info-main-container flex-container">
@@ -88,18 +82,15 @@
                     <p>We hope that you will have a marvelous experince at our platform.</p>
                     <p>And that this platform will be your first step in the handmade business world.</p>
                     <p>All the staff here at Crafts Circle Wish you the good luck, and are doing there best for you.</p>
-                
                 </div>
             </div>
             <hr>
         </div>
     </div>
-    
 </section>
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/menu.js' %}"></script>
     <script src="{% static 'js/slider.js' %}"></script>
-    
 {% endblock %}    
     
