@@ -1,10 +1,8 @@
 {% load static %}
-
 {% load django_htmx %}
-
+<!-- _________________________Base HTML file______________________________ -->
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,29 +12,27 @@
     <title>Crafts Circle</title>
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
 </head>
-
 <body>
     <div class ="main-wrapper">
-
         <header class = "flex-container">
             <div class = "main-container flex-container">
                 <div class = "nav-container flex-container">
-    
+                    <!-- Bar menu icon_______________ -->
                     <nav id = "bar-menu" class="navigation flex-container ">
                         <ul class="flex-container">
                             <li>
                                 <a id ="bar-menu-button" href="javascript:void(0);" class="icon" onclick="toggleMenu('center-nav-menu')"><i class="fa-solid fa-bars"></i></a>
-    
                             </li>
                         </ul>
                     </nav>
+                    <!-- Logo________________________ -->
                     <div class = "logo-container flex-container">
                         <a id = "logo" class = "flex-container" href="{% url 'home' %}">
                             <img class = "big-logo" src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044569/logo_wu0jeo.svg" alt="Crafts Circle logo">
                             <img class = "small-logo" src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044568/favicon_sbvbv9.ico" alt="Crafts Circle logo">
                         </a>
                     </div>
-                    
+                    <!-- Centre menu_________________ -->
                     <nav id="center-nav-menu" class="navigation center flex-container display-non">
                         <ul class ="flex-container">
                             <li>
@@ -54,10 +50,9 @@
                                 </form>
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </li>        
-                            
                         </ul>
                     </nav>
-                    
+                    <!-- User menu___________________ -->
                     <nav id="right-nav-menu" class="navigation right flex-container">
                         <ul class ="flex-container">
                             <li class=" search-box ">
@@ -65,7 +60,6 @@
                                     <input type="text" class="search-input" name="query_input" onmouseout="this.value = ''; this.blur();">
                                 </form>
                                 <i class="fa-solid fa-magnifying-glass"></i>
-                                
                             </li>
                             <li>
                                 {% if user.is_authenticated %}
@@ -97,61 +91,45 @@
                                             </li>
                                             {% endif %}
                                         {% endfor %}
-                                        
                                         <li>
                                             <a class="link" href="{% url 'favorite_page' %}">Favorites</a>
                                         </li>
-                                        
-                                        
                                         <hr>
                                         <li>
                                             <a class="link" href="{% url 'account_logout' %}">Log Out</a>
                                         </li>
                                         {% endif %}
-    
                                     </ul>
-    
                                 </div>
                             </li>
-    
                         </ul>
                     </nav>
                 </div>
-    
             </div>
         </header>
         <main class="flex-container">
-           
             {% block content %}
             <!-- Content Goes here -->
             {% endblock content %}
-
-
-            
-
+            <!-- Modal notification__________ -->
             {% if messages %}
             <div id="info-modal" class="info-modal flex-container">
                 {% for message in messages %}
                 <div class="info-modal-message flex-container">
                     <div class=" {{ message.tags }}">
                         <p>{{ message | safe }}</p>
-
                     </div>
                     <button id="close-modal" type="button" onclick="closeModal()" class="close-button" data-bs-dismiss="modal" aria-label="close"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 {% endfor %}
             </div>
+            <!-- Cloase the modal after 4 sec___________________ -->
             <script>
                 setTimeout(function() {
                     closeModal()
                 }, 4000);
             </script>
             {% endif %}
-
-            
-
-
-
         </main>
         <footer class="flex-container">
             <div class="copy-info">
@@ -161,25 +139,22 @@
             <div class="main-container flex-container">
                 <ul class="social-media  flex-container">
                     <li class="media-link flex-container">
-                        <a href="https://www.facebook.com/"><i class="fa-brands fa-facebook "></i></a>
+                        <a href="https://www.facebook.com/" aria-label="Facebook link" target="_blank"><i class="fa-brands fa-facebook "></i></a>
                     </li>
                     <li class="media-link flex-container">
-                        <a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://twitter.com/" aria-label="Twitter link" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                     </li>
                     <li class="media-link flex-container">
-                        <a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/" aria-label="Instagram link" target="_blank"><i class="fa-brands fa-instagram"></i></a>
                     </li>
                     <li class="media-link flex-container">
-                        <a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.youtube.com/" aria-label="Youtube link" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 </ul>
             </div>
-            
         </footer>
     </div>
-
     {% block script %}
     <script src="{% static 'js/menu.js' %}"></script>
     {% endblock %}
 </body>
-
 </html>
