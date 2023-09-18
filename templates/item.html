@@ -2,34 +2,29 @@
 {% load static %}
 {% load crispy_forms_tags%}
 {% block css %}<link rel="stylesheet" href="{% static 'css/item.css' %}">{% endblock%}
+<!-- _________________________The item page_______________________________ -->
 {% block content %}
-    <div class="item-main-container main-container flex-container">
-        <div class="most-view item-container">
-            <!-- <h2 class = "section-title">Most Viewed</h2> -->
-            
-            <div class="most-view-title">
+<div class="item-main-container main-container flex-container">
+    <div class="most-view item-container">
+        <div class="most-view-title">
+                <!-- The title___________________ -->
                 <h2>{{post.title}}</h2>
             </div>
-            
-            
             <div class="image-container most-view-image">
+                <!-- The image___________________ -->
                 <h3 id="item-category">{{post.get_category_display}}</h3>
                 {% if "placeholder" in post.listing_image.url %}
-                    <img src="{% static 'images/image-1.jpg' %}" alt="Place holder">
+                <img src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044564/place_holder_rqjtrx.webp" alt="Place holder">
                 {% else %}
-                    <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
+                <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
                 {% endif %}
-                
             </div>
-            
-            
-            
-            
             <div class="most-view-sub">
+                <!-- The content_________________ -->
                 {{post.content | safe}}
             </div>
-            
             <div class="item-user-info flex-container">
+                <!-- The post info_______________ -->
                 <div>
                     <p><span class="user-name">{{post.author}}</span></p>
                     <p><span class="creation-date">{{post.created_on | date:"M d, Y"}}</span></p>
@@ -37,8 +32,8 @@
                 <div class="item-user-interaction flex-container">
                     <div class="item-likes">
                         <p> 
+                            <!-- Like for registered users___ -->
                             {% if user.is_authenticated %}
-                                         
                                 <form class = "like_button_form" action="{% url 'item_like' post.slug %}" method="POST">
                                     {% csrf_token %}
                                     {% if liked %}
@@ -46,29 +41,26 @@
                                             <i class="fa-solid fa-heart"></i>
                                             <span class="number">{{post.number_of_likes}}</span>
                                         </button>
-                                        <!-- <span class="heart"><i class="fa-solid fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span> -->
                                         {% else %}
                                         <button type="submit" name="blogpost_id" value="{{post.slug}}" class="heart">
                                             <i class="fa-regular fa-heart"></i>
                                             <span class="number">{{post.number_of_likes}}</span>
                                         </button>
-                                        <!-- <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span> -->
                                     {% endif %}    
                                 </form>
                             {% else %}
                                 <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
                             {% endif %}
-
                         </p>
                     </div>
                     <div class="item-comments">
                         <p>
                             <span class="bubble"><i class="fa-regular fa-comment"></i></span><span class="number">{{number_of_comments}}</span>
-    
                         </p>
                     </div>
                 </div>
             </div>
+            <!-- Comments____________________ -->
             <div class="commnets-container v-flex-container">
                 <div class="comments-card-container v-flex-container">
                     {% for comment in comments %}
@@ -77,44 +69,38 @@
                         <p class="comment-body">{{comment.comment_body}}</p>
                     </div>
                     {% endfor%}
-                    
                 </div> 
                 <div class="comment-form-container">
+                <!-- Comment form________________ -->
                     {% if commented %}
                     <div class=" flex-container">
                         <div class="alert flex-container">
                             <p>Your comment is awaiting approval</p>
-
                         </div>
                     </div>
                     {% else %}
                         {% if user.is_authenticated %}
                         <form class="comment-form" method="POST">
                             <p><label for="id_comment_body">Leave a comment:</label></p>
-                            <!-- <textarea id="comment" name="comment" ></textarea> -->
                             {{ comment_form | crispy }}
                             {% csrf_token %}
                             <br>
                             <div class=" flex-container">
-                                <!-- <input class="button" type="submit" value="Submit"> -->
                                 <button type="submit" class="button">Submit</button>
-
                             </div>
                         </form>
                         {% else %}
                         <div class=" flex-container">
                             <a class= "button" href="{{ signup_url }}">signup to comment</a></p>
-                            
                         </div>
                         {% endif %}
                     {% endif %}
                 </div>
             </div>
         </div>
+        <!-- Side panel__________________ -->
         {% include "partials/side_panel.html"%}
-       
     </div>
-
 {% endblock %}
 {% block script %}
 <script src="{% static 'js/menu.js' %}"></script>
