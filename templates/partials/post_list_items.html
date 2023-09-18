@@ -1,7 +1,7 @@
 {% load static %}
-
+<!-- _________________________Post list items++___________________________ -->
 {% for post in page_obj %}
-    
+<!-- The container htmx proporties for lazy scrolling++___________________ -->
     {% if forloop.last %}
     {% if request.path == '/' %}
         <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
@@ -15,19 +15,13 @@
         <div class="item-container" hx-get = "{% url 'search_bar'%}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         {% elif 'tags' in request.path %}
         <div class="item-container" hx-get = "{% url 'tags' tag %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
-        
         {% endif%}   
-           
- 
-        
-    
     {% else %}
         <div class="item-container">
     {% endif %}
-            
             <a href="{% url 'item' post.slug %}">
-
-                <div class="image-container item-image">
+            <!-- The image___________________ -->
+                <div class="image-container item-image" aria-label="Link to the {{post.title}} post">
                     <h3 id="item-category">{{post.get_category_display}}</h3>
                     {% if "placeholder" in post.listing_image.url %}
                         <img src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044564/place_holder_rqjtrx.webp" alt="Place holder">
@@ -36,42 +30,34 @@
                     {% endif %}
                 </div>
             </a>
+            <!-- User info___________________ -->
             <div class="item-user-info">
                 <p><span class="user-name">{{post.author}}</span> . <span class="creation-date">{{post.created_on | date:"M d, Y"}}</span></p>
             </div>
-            <a href="{% url 'item' post.slug %}">
+            <!-- Post title__________________ -->
+            <a href="{% url 'item' post.slug %}" aria-label="Link to the {{post.title}} post">
                 <div class="item-title">
                     <h2>{{post.title}}</h2>
                 </div>
+                <!-- Post content____________ -->
                 <div class="item-sub">
                     <span>{{post.content|striptags|truncatewords:25}}</span>
                 </div>
-
             </a>
             <hr>
             <div class="item-user-interaction flex-container">
                 {% if 'my_page' in request.path %}
+                <!-- Manager controls________ -->
                 <div class="buttons-container flex-container">
-                    
                     <div class="edit-button  button">
-                        
-                        <a href="{% url 'edit_item' post.slug %}">Edit</a>
-    
+                        <a href="{% url 'edit_item' post.slug %}" aria-label="Edit to the {{post.title}} post">Edit</a>
                     </div>
                     <div class="delete-button  button">
-                        
-                        <a href="{% url 'delete_item' post.slug %}">Delete</a>
-    
+                        <a href="{% url 'delete_item' post.slug %}" aria-label="Delete the {{post.title}} post">Delete</a>
                     </div>
-
-                    <!-- <form class = "delete-button" action="{% url 'delete_item' post.slug %}" method="POST">
-                        {% csrf_token %}
-                        
-                            <button type="submit" name="item_id" value="{{post.slug}}" class="button">Delete
-                            </button>
-                    </form> -->
                 </div>
                 {% endif %}
+                <!-- Post info_______________ -->
                 <div class="item-likes">
                     <p>
                         <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
@@ -79,12 +65,9 @@
                 </div>
                 <div class="item-comments">
                     <p>
-                        <!-- <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">{{post.comments.all.count}}</span> -->
                         <span class="buble"><i class="fa-regular fa-comment"></i></span><span class="number">{{post.number_of_comments}}</span>
-
                     </p>
                 </div>
             </div>
         </div>
-
 {% endfor%}  

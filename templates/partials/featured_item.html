@@ -1,12 +1,14 @@
 {% load static %}
-
+<!-- _________________________The featured post___________________________ -->
+<!-- The title___________________ -->
 <div class="most-view item-container">
-    <a href="{% url 'item' featured_post.slug %}">
+    <a href="{% url 'item' featured_post.slug %}" aria-label="Link to the post">
         <div class="most-view-title">
             <h2>{{featured_post.title}}</h2>
         </div>
     </a>
-    <a href="{% url 'item' featured_post.slug %}">
+    <!-- The image___________________ -->
+    <a href="{% url 'item' featured_post.slug %}" aria-label="Link to the post">
         <div class="image-container most-view-image">
             <h3 id="item-category">{{featured_post.get_category_display}}</h3>
             {% if "placeholder" in featured_post.listing_image.url %}
@@ -16,11 +18,13 @@
             {% endif %}
         </div>
     </a>
-    <a href="{% url 'item' featured_post.slug %}">
+    <!-- The content_________________ -->
+    <a href="{% url 'item' featured_post.slug %}" aria-label="Link to the post">
         <div class="most-view-sub">
             <span>{{featured_post.content|safe|truncatewords:25}}</span>
         </div>
     </a>
+    <!-- The info____________________ -->
     <div class="item-user-info flex-container">
         <div>
             <p><span class="user-name">{{featured_post.author}}</span></p>
@@ -39,7 +43,4 @@
             </div>
         </div>
     </div>
-    <!-- <div>
-        <span> {{featured_post.test_group}}</span> -----this is a test
-    </div> -->
 </div>
