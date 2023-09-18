@@ -2,13 +2,14 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block css %}<link rel="stylesheet" href="{% static 'css/contact.css' %}">{% endblock%} 
+<!-- _________________________The contact page___________________________ -->
 {% block content %}
 <section id="hero-section" class="main-container">
     <div class="contact-info-main-container flex-container">
         <div class="contact-info-container flex-container">
-            
+            <!-- Main contact info___________ -->
             <div class="contact-info-form">
-                <h2>You can contact us by leaving a message or via our emails.</h2>
+                <h2>You can contact us by leaving a message here or via our email adresses.</h2>
                 <div class="email-info">
                     <h3>Advertising:</h3>
                     <a class="email" href="mailto:advertizing@email.com">advertising@email.com</a>
@@ -18,13 +19,10 @@
                 <a class="email" href="mailto:support@email.com">support@email.com</a>
             </div>
             </div>
-            
         </div>
-
-
     </div>
+    <!-- Background slider___________ -->
     <div class="slideshow-container v-flex-container">
-        
         <!-- Slideshow container -->
         <div class="slideshow">
             <!-- Full-width images with number and caption text -->
@@ -33,57 +31,41 @@
                 <div class="image-container">
                     <img src="{{ slider.slider_image.url }}" alt="{{slider.title}}">
                 </div>
-                
             </div>
             {% endfor %}
             <div class="nav-dots display-non">
                 {% for slider in sliders %}
                 <span class="dot" onclick="currentSlide({{ forloop.counter }})"></span>
-                
                 {% endfor %}
             </div>
-        
             <!-- Next and previous buttons -->
             <a class="prev display-non" onclick="plusSlides(-1)">&#10094;</a>
             <a id="next" class="next display-non" onclick="plusSlides(1)">&#10095;</a>
         </div>
-        
-        
-        <!-- The dots/circles -->
-        
     </div>
-
 </section>
 <section id = "contact-section"  class="main-container flex-container">
     <div class="contact-main-container">
-
+        <!-- Contact form________________ -->
         <div class="contact-container">
             <h2>Leave a message</h2>
             <p>We will get back to you as soon as possible</p>
-            
-            
-            
             <form class="contact" method="POST" action="{% url 'contact_page' %}" >
                 {% csrf_token %}
-                
                 {{ contact_message_form | crispy }}
                 {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
                 {% endif %}
                 <div class="flex-container">
                 <button class="button primaryAction" type="submit">Submit</button>
-    
                 </div>
-            
             </form>
         </div>
     </div>
-    
 </section>
 {% endblock %}
 {% block script %}
     <script src="{% static 'js/menu.js' %}"></script>
     <script src="{% static 'js/slider.js' %}"></script>
-    
 {% endblock %}    
     
