@@ -25,6 +25,7 @@ class PostList(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
+        Tag.objects.filter(post=None).delete()
         tags = Tag.objects.all()
         context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(
@@ -75,7 +76,7 @@ class CategoryFilter(generic.ListView):
             num_likes=Count('likes')
             ).order_by(
                 '-num_likes'
-                )[1:5]
+                )[0:5]
         context['categories'] = CATEGORY
         context['category'] = category
         context['tags'] = tags
@@ -115,7 +116,7 @@ class Tags(generic.ListView):
             num_likes=Count('likes')
             ).order_by(
                 '-num_likes'
-                )[1:5]
+                )[0:5]
         context['categories'] = CATEGORY
         context['tags'] = tags
         context['tag'] = tag_name
