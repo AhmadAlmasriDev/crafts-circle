@@ -15,7 +15,7 @@
                 </div>
                 <a href="{% url 'item' post.slug %}" class="title-container">
                     <h2>{{post.title}}</h2>
-                    <p>{{post.content|striptags|truncatewords:10}}</p>
+                    <p>{{post.content|striptags|safe|truncatewords:10}}</p>
                 </a>
             </div>
             {% endfor %}
@@ -36,7 +36,7 @@
     <div class="main-panel v-flex-container">
         <!-- The featured post____________ --> 
         {% if request.get_full_path == '/' %}
-            {% include "partials/featured_item.html"%}
+            {% include "partials/featured_item.html" %}
         {% endif%}
         <div class="all-items-container">
             <!-- No items to display__________ --> 
@@ -49,12 +49,12 @@
             {% endif %}
             <div class="grid-container">
                 <!-- The items list_______________ --> 
-                {% include "partials/post_list_items.html"%}
+                {% include "partials/post_list_items.html" %}
             </div>
         </div>
     </div>
     <!-- The side panel_______________ --> 
-    {% include "partials/side_panel.html"%}
+    {% include "partials/side_panel.html" %}
 </section>
 {% endblock %}
 {% block script %}

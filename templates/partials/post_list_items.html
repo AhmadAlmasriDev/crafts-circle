@@ -3,7 +3,7 @@
 {% for post in page_obj %}
 <!-- The container htmx proporties for lazy scrolling++___________________ -->
     {% if forloop.last %}
-    {% if request.path == '/' %}
+        {% if request.path == '/' %}
         <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         {% elif 'filter_by_category' in request.path %}
         <div class="item-container" hx-get = "{% url 'category_filter' category %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
@@ -41,7 +41,7 @@
                 </div>
                 <!-- Post content____________ -->
                 <div class="item-sub">
-                    <span>{{post.content|striptags|truncatewords:25}}</span>
+                    <span>{{post.content|striptags|safe|truncatewords:25}}</span>
                 </div>
             </a>
             <hr>

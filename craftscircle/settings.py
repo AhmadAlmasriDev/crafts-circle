@@ -21,7 +21,7 @@ from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -32,7 +32,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['8000-ahmadalmasr-craftscircl-w2ag7kdatmv.ws-eu104.gitpod.io', 'craftscircle-9727f9958766.herokuapp.com']
+ALLOWED_HOSTS = [
+    '8000-ahmadalmasr-craftscircl-w2ag7kdatmv.ws-eu104.gitpod.io',
+    'craftscircle-9727f9958766.herokuapp.com',
+    ]
 
 ACCOUNT_EMAIL_VERIFICATION = 'none'
 
@@ -45,11 +48,11 @@ SUMMERNOTE_CONFIG = {
         'toolbar': [
             ['style', ['style']],
             ['font', ['bold', 'underline', 'clear']],
-            
+
             ['color', ['color']],
             ['para', ['ul', 'ol', 'paragraph']],
-           
-            ['view', ['fullscreen','help']],
+
+            ['view', ['fullscreen', 'help']],
         ],
     },
 }

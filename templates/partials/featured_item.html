@@ -21,7 +21,8 @@
     <!-- The content_________________ -->
     <a href="{% url 'item' featured_post.slug %}" aria-label="Link to the post">
         <div class="most-view-sub">
-            <span>{{featured_post.content|safe|truncatewords:25}}</span>
+            <!-- <span>{{featured_post.content|safe|truncatewords:25}}</span> -->
+            <span>{{featured_post.content|striptags|safe|truncatewords:25}}</span>
         </div>
     </a>
     <!-- The info____________________ -->
