@@ -280,6 +280,68 @@ main{
     height: 100%;
 }
 
+.info-modal{
+    padding: 16px;
+    align-items: flex-start;
+    position: absolute;
+    background-color: #111827;
+    opacity: .9;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2000;
+}
+
+.info-modal-message{
+    position: sticky;
+    top: 200px;
+    background-color: #f8f8f8f8;
+    border: solid 2px #6b72804d;
+    border-radius: 10px;
+    color: #334155;
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 500px;
+}
+
+.info-modal-message p{
+    font-size: 24px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.info-modal button{
+    position: absolute;
+    font-size: 19px;
+    margin-top: 4px;
+    margin-right: 4px;
+    right: 0;
+    top: 0;
+}
+
+.info-modal button:hover{
+    color: #6b72804d;
+}
+
+.info-modal-message div{
+    width: 100%;
+    padding-bottom:4px;
+    color: #334155;
+}
+
+div.alert-success{
+    background-color: rgba(0, 128, 0, 0.2);
+}
+
+div.alert-warning{
+    background-color: rgba(255, 255, 0, 0.2);
+}
+
+div.alert-danger{
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
 .add-item-container{
     border: solid 2px #6b72804d;
     border-radius: 15px;
@@ -351,9 +413,6 @@ main input:focus{
 
 main h1{
     margin-bottom: 16px;
-}
-
-main .button{
 }
 
 /* ---------------------------Footer----------------------------------------- */
