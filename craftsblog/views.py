@@ -15,7 +15,7 @@ import random
 
 class PostList(generic.ListView):
     """
-    The home page list of items, in most of the views there 
+    The home page list of items, in most of the views there
     is additional context for the slider and side panel to work.
     """
     model = Post
@@ -149,7 +149,10 @@ class PostDetail(View):
             ).order_by(
                 "-created_on"
                 ).count()
-        not_approved_posts = post.comments.filter(approved=False)
+        not_approved_posts = post.comments.filter(
+            user_name=self.request.user,
+            approved=False
+            )
         tags = Tag.objects.all()
         liked = False
         if post.likes.filter(id=self.request.user.id).exists():
