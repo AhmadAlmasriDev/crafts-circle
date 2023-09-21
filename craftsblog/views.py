@@ -242,11 +242,8 @@ class AboutPage(generic.ListView):
     The about page.
     """
     model = Post
-    queryset = Post.objects.filter(status=1).annotate(
-        num_likes=Count('likes')
-        ).order_by(
-            '-num_likes'
-            )[0:5]
+    items = list(Post.objects.all())
+    queryset = random.sample(items, 5)
     context_object_name = "sliders"
     template_name = "about.html"
 
@@ -293,18 +290,16 @@ class ContactPage(View):
     """
 
     def get(self, request):
-        top_posts = Post.objects.annotate(
-            num_likes=Count('likes')
-            ).order_by(
-                '-num_likes'
-                )[0:5]
+
+        items = list(Post.objects.all())
+        sliders = random.sample(items, 5)
         contact_message_form = ContactMessageForm()
 
         return render(
             request,
             "contact.html",
             {
-                "sliders": top_posts,
+                "sliders": sliders,
                 "contact_message_form": contact_message_form,
             },
         )
