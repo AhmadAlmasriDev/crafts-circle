@@ -91,7 +91,7 @@
                         </form>
                         {% else %}
                         <div class=" flex-container">
-                            <a class= "button" href="{{ signup_url }}">signup to comment</a></p>
+                            <a class= "button" href="{% url 'account_login' %}">signup to comment</a></p>
                         </div>
                         {% endif %}
                     {% endif %}
