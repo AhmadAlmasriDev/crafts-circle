@@ -594,7 +594,7 @@ footer span{
     /* Footer--------------------------------- */
 
     .copy-info{
-        color: #6b7280;
+        color: #fff;
         display:flex;
         flex-direction: column;
         width: 100%;
