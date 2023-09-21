@@ -1,7 +1,7 @@
 {% load static %}
 <!-- _________________________Post list items++___________________________ -->
-{% for post in page_obj %}
 <!-- The container htmx proporties for lazy scrolling++___________________ -->
+{% for post in page_obj %}
     {% if forloop.last %}
         {% if request.path == '/' %}
         <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
@@ -21,12 +21,12 @@
     {% endif %}
             <a href="{% url 'item' post.slug %}">
             <!-- The image___________________ -->
-                <div class="image-container item-image" aria-label="Link to the {{post.title}} post">
-                    <h3 id="item-category">{{post.get_category_display}}</h3>
+                <div class="image-container item-image">
+                    <h3 class="item-category-label">{{post.get_category_display}}</h3>
                     {% if "placeholder" in post.listing_image.url %}
                         <img src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044564/place_holder_rqjtrx.webp" alt="Place holder">
                     {% else %}
-                    <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
+                        <img src="{{ post.listing_image.url }}" alt="{{post.title}}">
                     {% endif %}
                 </div>
             </a>

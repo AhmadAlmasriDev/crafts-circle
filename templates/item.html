@@ -12,7 +12,7 @@
             </div>
             <div class="image-container most-view-image">
                 <!-- The image___________________ -->
-                <h3 id="item-category">{{post.get_category_display}}</h3>
+                <h3 class="item-category-label">{{post.get_category_display}}</h3>
                 {% if "placeholder" in post.listing_image.url %}
                 <img src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044564/place_holder_rqjtrx.webp" alt="Place holder">
                 {% else %}
@@ -31,7 +31,7 @@
                 </div>
                 <div class="item-user-interaction flex-container">
                     <div class="item-likes">
-                        <p> 
+                        <div> 
                             <!-- Like for registered users___ -->
                             {% if user.is_authenticated %}
                                 <form class = "like_button_form" action="{% url 'item_like' post.slug %}" method="POST">
@@ -51,12 +51,12 @@
                             {% else %}
                                 <span class="heart"><i class="fa-regular fa-heart"></i></span><span class="number">{{post.number_of_likes}}</span>
                             {% endif %}
-                        </p>
+                            </div>
                     </div>
                     <div class="item-comments">
-                        <p>
+                        <div>
                             <span class="bubble"><i class="fa-regular fa-comment"></i></span><span class="number">{{number_of_comments}}</span>
-                        </p>
+                        </div>
                     </div>
                 </div>
             </div>

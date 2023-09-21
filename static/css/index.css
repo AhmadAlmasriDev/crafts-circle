@@ -468,7 +468,7 @@ aside{
     object-fit:cover;
 }
 
-#item-category{
+h3.item-category-label{
     position: absolute;
     right: 10px;
     top: 10px;

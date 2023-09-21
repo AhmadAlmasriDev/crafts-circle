@@ -3,14 +3,18 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from taggit.managers import TaggableManager
 
-STATUS = ((0 , "Draft") , (1 , "Published"))
-CATEGORY = ((0 , "Books") , (1 , "Lamps") , (2 , "Interior") , (3 , "Other"))
+STATUS = ((0, "Draft"), (1, "Published"))
+CATEGORY = ((0, "Books"), (1, "Lamps"), (2, "Interior"), (3, "Other"))
 
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post_author")
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="post_author"
+        )
     slider_image = CloudinaryField('slider_image', default='placeholder')
     listing_image = CloudinaryField('listing_image', default='placeholder')
     category = models.IntegerField(choices=CATEGORY)
@@ -37,7 +41,11 @@ class Post(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name="comments"
+        )
     user_name = models.CharField(max_length=80)
     comment_body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
@@ -51,11 +59,19 @@ class Comment(models.Model):
 
 
 class Message(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="messages")
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_messages")
+    post = models.ForeignKey(
+        Post,
+        on_delete=models.CASCADE,
+        related_name="messages"
+        )
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name="user_messages"
+        )
     message_body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)   
-    read = models.BooleanField(default=False)   
+    created_on = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
 
     class meta:
         ordering = ["created_on"]
@@ -69,8 +85,8 @@ class ContactMessage(models.Model):
     user_name = models.CharField(max_length=200)
     user_email = models.EmailField(max_length=254)
     message_body = models.TextField()
-    created_on = models.DateTimeField(auto_now_add=True)   
-    read = models.BooleanField(default=False)   
+    created_on = models.DateTimeField(auto_now_add=True)
+    read = models.BooleanField(default=False)
 
     class meta:
         ordering = ["created_on"]

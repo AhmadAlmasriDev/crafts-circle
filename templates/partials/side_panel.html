@@ -1,6 +1,6 @@
 {% load static%}
 <!-- _________________________Side panel__________________________________ -->
-<aside class="" >
+<aside>
     <div class="side-panel">
         <!-- Categories__________________ -->
         <div class="side-categories">
@@ -55,15 +55,16 @@
                 <h2>Tags</h2>
                 <hr>
                 <div>
-                <p>
-                    {% if tags %}
-                        {% for tag in tags %}
-                        <a href="{% url 'tags' tag.name %}">{{tag.name}}</a>
-                        {% endfor %}
-                    {% else %}
-                        <p class="no-tags">No Tags Avaliable</p>
-                    {% endif %}
-                </p>
+                    <p>
+                        {% if tags %}
+                            {% for tag in tags %}
+                            <a href="{% url 'tags' tag.name %}">{{tag.name}}</a>
+                            {% endfor %}
+                        {% else %}
+                            <p class="no-tags">No Tags Avaliable</p>
+                        {% endif %}
+                    </p>
+                </div>
             </div>
         </div>
     </div>

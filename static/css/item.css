@@ -298,7 +298,7 @@ aside{
     font-size:18px;
 }
 
-#item-category{
+h3.item-category-label{
     position: absolute;
     right: 10px;
     top: 10px;
@@ -333,11 +333,11 @@ aside{
 
 .most-view-title h2,
 .item-title h2{
-    font-size: 28;
+    font-size: 28px;
 }
 
 .most-view-title h2{
-    font-size: 36px;
+    font-size: 28px;
     margin-bottom: 16px;
 }
 
@@ -725,6 +725,10 @@ footer span{
     }
 
     /* Items--------------------------------- */
+
+    .most-view-title h2{
+        font-size: 36px;
+    }
 
     aside h2{
         font-size: 24px;

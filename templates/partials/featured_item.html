@@ -10,7 +10,7 @@
     <!-- The image___________________ -->
     <a href="{% url 'item' featured_post.slug %}" aria-label="Link to the post">
         <div class="image-container most-view-image">
-            <h3 id="item-category">{{featured_post.get_category_display}}</h3>
+            <h3 class="item-category-label">{{featured_post.get_category_display}}</h3>
             {% if "placeholder" in featured_post.listing_image.url %}
                 <img src="https://res.cloudinary.com/ahmad-mas/image/upload/v1695044564/place_holder_rqjtrx.webp" alt="Place holder">
             {% else %}
