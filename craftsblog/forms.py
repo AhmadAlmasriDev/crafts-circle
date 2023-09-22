@@ -19,11 +19,23 @@ class CommentForm(forms.ModelForm):
 
 
 class AddItemForm(forms.ModelForm):
-    content = forms.CharField(widget=SummernoteWidget, label="Content", required=True)
+    content = forms.CharField(
+        widget=SummernoteWidget,
+        label="Content",
+        required=True
+        )
 
     class Meta:
         model = Post
-        fields = ('title', 'slider_image', 'listing_image', 'category', 'content', 'tags', 'status')
+        fields = (
+            'title',
+            'slider_image',
+            'listing_image',
+            'category',
+            'content',
+            'tags',
+            'status'
+            )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
