@@ -2,7 +2,7 @@
 <!-- _________________________Post list items++___________________________ -->
 <!-- The container htmx proporties for lazy scrolling++___________________ -->
 {% for post in page_obj %}
-    {% if forloop.last %}
+    {% if forloop.last and post.id != last_item %}
         {% if request.path == '/' %}
         <div class="item-container" hx-get = "{% url 'home' %}?page={{ page_obj.number|add:1 }}" hx-swap="afterend" hx-trigger = "revealed">
         {% elif 'filter_by_category' in request.path %}

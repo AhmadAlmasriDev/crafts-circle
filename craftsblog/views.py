@@ -40,6 +40,11 @@ class PostList(generic.ListView):
                 )
         context['categories'] = CATEGORY
         context['tags'] = tags
+        context['last_item'] = Post.objects.filter(
+            status=1
+            ).latest(
+                "-created_on"
+                ).id
         return context
 
     def get_template_names(self):
@@ -60,7 +65,7 @@ class CategoryFilter(generic.ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         category = self.kwargs['category']
-        queryset = Post.objects.filter(category=category).order_by(
+        queryset = Post.objects.filter(category=category, status=1).order_by(
             "-created_on"
             )
         return queryset
@@ -80,6 +85,11 @@ class CategoryFilter(generic.ListView):
         context['categories'] = CATEGORY
         context['category'] = category
         context['tags'] = tags
+        context['last_item'] = Post.objects.filter(
+            category=category, status=1
+            ).latest(
+                "-created_on"
+                ).id
         return context
 
     def get_template_names(self):
@@ -100,7 +110,9 @@ class Tags(generic.ListView):
     def get_queryset(self):
         queryset = super().get_queryset()
         tag_name = self.kwargs['tag']
-        queryset = Post.objects.filter(tags__name=tag_name).order_by(
+        queryset = Post.objects.filter(
+            tags__name=tag_name, status=1
+            ).order_by(
             "-created_on"
             )
         return queryset
@@ -120,6 +132,11 @@ class Tags(generic.ListView):
         context['categories'] = CATEGORY
         context['tags'] = tags
         context['tag'] = tag_name
+        context['last_item'] = Post.objects.filter(
+            tags__name=tag_name, status=1
+            ).latest(
+            "-created_on"
+            ).id
         return context
 
     def get_template_names(self):
@@ -259,10 +276,11 @@ class FavoritePage(generic.ListView):
 
     def get_queryset(self):
         user = self.request.user
-        queryset = user.item_likes.all()
+        queryset = user.item_likes.all().order_by("-created_on")
         return queryset
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         tags = Tag.objects.all()
@@ -274,6 +292,7 @@ class FavoritePage(generic.ListView):
         context['section_title'] = 'Favorite Items'
         context['categories'] = CATEGORY
         context['tags'] = tags
+        context['last_item'] = user.item_likes.all().latest("-created_on").id
         return context
 
     def get_template_names(self):
@@ -443,6 +462,11 @@ class MyPage(CheckManagerMixin, generic.ListView):
         context['section_title'] = 'My Page'
         context['categories'] = CATEGORY
         context['tags'] = tags
+        context['last_item'] = Post.objects.filter(
+            author=self.request.user
+            ).latest(
+                "-created_on"
+                ).id
         return context
 
     def get_template_names(self):
@@ -469,6 +493,7 @@ class SearchBar(generic.ListView):
                 )
 
     def get_context_data(self, **kwargs):
+        query_input = self.request.GET.get('query_input')
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         tags = Tag.objects.all()
@@ -480,6 +505,11 @@ class SearchBar(generic.ListView):
         context['section_title'] = 'Search Results'
         context['categories'] = CATEGORY
         context['tags'] = tags
+        context['last_item'] = Post.objects.filter(
+            title__icontains=query_input
+            ).latest(
+                '-created_on'
+                ).id
         return context
 
     def get_template_names(self):
