@@ -29,13 +29,23 @@ function hideMenu(target) {
     x.classList.add("display-non")
 }
 
-// ______ Modal cloase _________________________________________
+// ______ Modal close __________________________________________
 
 function closeModal(){
   let x = document.getElementById("info-modal");
   x.classList.add("display-non");
 }
 
+// ______ Disable buttons after click ______________________________________
 
+  const button = document.querySelector('.button');
 
+  const disableButton = () => {
+    button.disabled = true
+  };
+  const action = ()=>{
+    setTimeout(disableButton, 1);  
+  }
+
+  button.addEventListener('click', action);
  
