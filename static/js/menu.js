@@ -38,14 +38,20 @@ function closeModal(){
 
 // ______ Disable buttons after click ______________________________________
 
-  const button = document.querySelector('.button');
+  if (document.querySelector('.button')) {
 
-  const disableButton = () => {
-    button.disabled = true
-  };
-  const action = ()=>{
-    setTimeout(disableButton, 1);  
-  }
+      const button = document.querySelector('.button');
+      const disableButton = () => {
+        button.disabled = true
+      };
+      const action = ()=>{
+        setTimeout(disableButton, 1);  
+      };
+      button.addEventListener('click', action);
+    }
+      
+    
 
-  button.addEventListener('click', action);
+  
+
  
