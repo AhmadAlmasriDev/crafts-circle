@@ -413,7 +413,7 @@ All Pages on the website have:
 
   </details>
 
-  - The search page provide the user with a way to search the posted items by the title or part of it. once the user hovers on top of the lens the search bar opens and the user can enter the text he wants for the items search. the results shows in the search page and the list is also using [HTMX](https://htmx.org/) for the lazy loading of the items list. A message "No Items Available" will appear.
+- The search page provide the user with a way to search the posted items by the title or part of it. once the user hovers on top of the lens the search bar opens and the user can enter the text he wants for the items search. the results shows in the search page and the list is also using [HTMX](https://htmx.org/) for the lazy loading of the items list. A message "No Items Available" will appear.
 
   <details close>
   <summary>Search No Items</summary>
@@ -500,21 +500,21 @@ All Pages on the website have:
   <details close>
   <summary>Comments Registered User</summary>
 
-  ![Comments Registered User](documentation/comments_1.jpg)
+  ![Comments Registered User](documentation/comment_1.jpg)
 
   </details>
 
   <details close>
   <summary>Comments Non Registered User</summary>
 
-  ![Comments Non Registered User](documentation/comments_2.jpg)
+  ![Comments Non Registered User](documentation/comment_2.jpg)
 
   </details>
   
   <details close>
   <summary>Comments Approval</summary>
 
-  ![Comments Approval](documentation/comments_3.jpg)
+  ![Comments Approval](documentation/comment_3.jpg)
 
   </details>
 
@@ -597,7 +597,7 @@ All Pages on the website have:
   <summary>Delete Confirmation</summary>
 
   ![Delete Confirmation](documentation/delete_confirmation.jpg)
-
+  
   </details>
   - Delete confirmation dialog appears when a manager deletes an item. The item will not be deleted immediately, but after the manager confirms that he wants to delete this item.
   Then the manager will get a notification modal with the operation result. 
