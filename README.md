@@ -637,9 +637,9 @@ the breaking points used, are from this [article](https://testsigma.com/blog/css
 
     </details>
 
-- The user menu and the bars menu behavior is achieved using JS [menu.js]() that closes the menu when ever the user clicks outside the menu. And is loaded on the [base.html]() file.
-- The info modals are closed automatically after four seconds also by using JS  [menu.js]()
-- The slider functionality and autoplay is achieved by JS [slider]() 
+- The user menu and the bars menu behavior is achieved using JS [menu.js](./static/js/menu.js) that closes the menu when ever the user clicks outside the menu. And is loaded on the base.html file.
+- The info modals are closed automatically after four seconds also by using JS  [menu.js](./static/js/menu.js)
+- The slider functionality and autoplay is achieved by JS [slider.js](./static/js/slider.js) 
 
 ### Accessibility
 
