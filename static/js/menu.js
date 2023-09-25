@@ -22,13 +22,6 @@ function toggleMenu(target) {
     }
 }
 
-// ______ Hide menu ____________________________________________
-
-function hideMenu(target) {
-    let x = document.getElementById(target);
-    x.classList.add("display-non")
-}
-
 // ______ Modal close __________________________________________
 
 function closeModal(){

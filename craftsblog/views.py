@@ -27,6 +27,15 @@ class PostList(generic.ListView):
         items = list(Post.objects.all())
         Tag.objects.filter(post=None).delete()
         tags = Tag.objects.all()
+        if Post.objects.filter(status=1):
+            last_item = Post.objects.filter(
+                status=1
+                ).latest(
+                "-created_on"
+                ).id
+        else:
+            last_item = 0
+
         context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(
             num_likes=Count('likes')
@@ -40,11 +49,7 @@ class PostList(generic.ListView):
                 )
         context['categories'] = CATEGORY
         context['tags'] = tags
-        context['last_item'] = Post.objects.filter(
-            status=1
-            ).latest(
-                "-created_on"
-                ).id
+        context['last_item'] = last_item
         return context
 
     def get_template_names(self):
@@ -75,7 +80,14 @@ class CategoryFilter(generic.ListView):
         items = list(Post.objects.all())
         category = self.kwargs['category']
         tags = Tag.objects.all()
-
+        if Post.objects.filter(category=category, status=1):
+            last_item = Post.objects.filter(
+                category=category, status=1
+                ).latest(
+                    "-created_on"
+                    ).id
+        else:
+            last_item = 0
         context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(
             num_likes=Count('likes')
@@ -85,11 +97,7 @@ class CategoryFilter(generic.ListView):
         context['categories'] = CATEGORY
         context['category'] = category
         context['tags'] = tags
-        context['last_item'] = Post.objects.filter(
-            category=category, status=1
-            ).latest(
-                "-created_on"
-                ).id
+        context['last_item'] = last_item
         return context
 
     def get_template_names(self):
@@ -122,7 +130,14 @@ class Tags(generic.ListView):
         items = list(Post.objects.all())
         tag_name = self.kwargs['tag']
         tags = Tag.objects.all()
-
+        if Post.objects.filter(tags__name=tag_name, status=1):
+            last_item = Post.objects.filter(
+                tags__name=tag_name, status=1
+                ).latest(
+                "-created_on"
+                ).id
+        else:
+            last_item = 0
         context['slider_posts'] = random.sample(items, 5)
         context['top_posts'] = Post.objects.annotate(
             num_likes=Count('likes')
@@ -132,11 +147,7 @@ class Tags(generic.ListView):
         context['categories'] = CATEGORY
         context['tags'] = tags
         context['tag'] = tag_name
-        context['last_item'] = Post.objects.filter(
-            tags__name=tag_name, status=1
-            ).latest(
-            "-created_on"
-            ).id
+        context['last_item'] = last_item
         return context
 
     def get_template_names(self):
@@ -284,6 +295,10 @@ class FavoritePage(generic.ListView):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         tags = Tag.objects.all()
+        if user.item_likes.all():
+            last_item = user.item_likes.all().latest("-created_on").id
+        else:
+            last_item = 0
         context['top_posts'] = Post.objects.annotate(
             num_likes=Count('likes')
             ).order_by(
@@ -292,7 +307,7 @@ class FavoritePage(generic.ListView):
         context['section_title'] = 'Favorite Items'
         context['categories'] = CATEGORY
         context['tags'] = tags
-        context['last_item'] = user.item_likes.all().latest("-created_on").id
+        context['last_item'] = last_item
         return context
 
     def get_template_names(self):
@@ -454,6 +469,14 @@ class MyPage(CheckManagerMixin, generic.ListView):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         tags = Tag.objects.all()
+        if Post.objects.filter(author=self.request.user):
+            last_item = Post.objects.filter(
+                author=self.request.user
+                ).latest(
+                "-created_on"
+                ).id
+        else:
+            last_item = 0
         context['top_posts'] = Post.objects.annotate(
             num_likes=Count('likes')
             ).order_by(
@@ -462,11 +485,7 @@ class MyPage(CheckManagerMixin, generic.ListView):
         context['section_title'] = 'My Page'
         context['categories'] = CATEGORY
         context['tags'] = tags
-        context['last_item'] = Post.objects.filter(
-            author=self.request.user
-            ).latest(
-                "-created_on"
-                ).id
+        context['last_item'] = last_item
         return context
 
     def get_template_names(self):
@@ -497,6 +516,14 @@ class SearchBar(generic.ListView):
         context = super().get_context_data(**kwargs)
         items = list(Post.objects.all())
         tags = Tag.objects.all()
+        if Post.objects.filter(title__icontains=query_input):
+            last_item = Post.objects.filter(
+                title__icontains=query_input
+                ).latest(
+                '-created_on'
+                ).id
+        else:
+            last_item = 0
         context['top_posts'] = Post.objects.annotate(
             num_likes=Count('likes')
             ).order_by(
@@ -505,11 +532,7 @@ class SearchBar(generic.ListView):
         context['section_title'] = 'Search Results'
         context['categories'] = CATEGORY
         context['tags'] = tags
-        context['last_item'] = Post.objects.filter(
-            title__icontains=query_input
-            ).latest(
-                '-created_on'
-                ).id
+        context['last_item'] = last_item
         return context
 
     def get_template_names(self):
