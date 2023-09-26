@@ -35,7 +35,7 @@ DEBUG = False
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 ALLOWED_HOSTS = [
-    '8000-ahmadalmasr-craftscircl-w2ag7kdatmv.ws-eu104.gitpod.io',
+    '8000-ahmadalmasr-craftscircl-w2ag7kdatmv.ws-eu105.gitpod.io',
     'craftscircle-9727f9958766.herokuapp.com',
     ]
 

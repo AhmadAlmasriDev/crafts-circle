@@ -410,7 +410,7 @@ class EditItem(CheckManagerMixin, View):
     The edit item page allows the users to edit the items they added.
     """
     def get(self, request, slug):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects
         item = get_object_or_404(queryset, slug=slug)
         add_item_form = AddItemForm(instance=item)
 
@@ -423,7 +423,7 @@ class EditItem(CheckManagerMixin, View):
         )
 
     def post(self, request, slug):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects
         item = get_object_or_404(queryset, slug=slug)
         add_item_form = AddItemForm(
             request.POST,
@@ -549,7 +549,7 @@ class DeleteItem(CheckManagerMixin, View):
     """
 
     def get(self, request, slug):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects
         post = get_object_or_404(queryset, slug=slug)
 
         return render(
@@ -561,7 +561,7 @@ class DeleteItem(CheckManagerMixin, View):
         )
 
     def post(self, request, slug):
-        queryset = Post.objects.filter(status=1)
+        queryset = Post.objects
         item = get_object_or_404(queryset, slug=slug)
         item.delete()
         Tag.objects.filter(post=None).delete()

@@ -31,19 +31,57 @@ function closeModal(){
 
 // ______ Disable buttons after click ______________________________________
 
-  if (document.querySelector('.button')) {
+const check = ()=>{
 
-      const button = document.querySelector('.button');
-      const disableButton = () => {
-        button.disabled = true
-      };
-      const action = ()=>{
-        setTimeout(disableButton, 1);  
-      };
-      button.addEventListener('click', action);
+  for (item of textInput){
+    if (!item.checkValidity()) {
+      return false
     }
-      
-    
+  }
+  for (item of passInput){
+    if (!item.checkValidity()) {
+      return false
+    }
+  }
+  for (item of textArea){
+    if (!item.checkValidity()) {
+      return false
+    }
+  }
+  for (item of selectInput){
+    if (!item.checkValidity()) {
+      return false
+    }
+  }
+
+  return true
+}
+
+const disableButton = () => {
+  formButton.disabled = true
+}
+
+const action = ()=>{
+  if (check()){
+    setTimeout(disableButton, 1);  
+  }
+}
+
+if (document.querySelector('.button')) {
+  formButton = document.querySelector('.button');
+  textInput = document.querySelectorAll('main input[type="text"]');
+  passInput = document.querySelectorAll('main input[type="password"]');
+  textArea = document.querySelectorAll('textarea');
+  selectInput = document.querySelectorAll('main select');
+
+  formButton.addEventListener('click', action);
+
+}
+
+
+
+  
+
 
   
 

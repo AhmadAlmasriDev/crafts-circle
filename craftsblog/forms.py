@@ -22,7 +22,7 @@ class AddItemForm(forms.ModelForm):
     content = forms.CharField(
         widget=SummernoteWidget,
         label="Content",
-        required=True
+        required=False
         )
 
     class Meta:
