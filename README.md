@@ -264,6 +264,7 @@ The website consist of nine pages and three form pages.
 All Pages on the website have:
 
   - A responsive navigation bar at the top which allows the user to navigate through the website. To the left of the website header is a logo. In the middle is the navigation bar with the links to the website pages (Home, About, Contact). to the right is a dynamic user menu the content change according to the user role. To allow a good user experience of the site. When viewing with mobile devices the navigation menu change to a bars menu list to the left side and the logo location changes to the middle. This was implemented to give the website a clean look. A hover animation for the links is also present.
+  - A script that disables the submit form button if exist, in order to prevent resubmitting errors. the script works all the time but there is one bug that I was not able to fix. And that is when the user tries to submit an empty form with place holder, the button is disabled. I documented this behavior in the [testing](testing.md) section.
 
     The user menu icon changes when the user is registered
     <details close>
@@ -326,11 +327,11 @@ All Pages on the website have:
 
     - A dynamic slider:
       The slider was based on a standard slider from [w3schools](https://www.w3schools.com/howto/howto_js_slideshow.asp) that I modified for my purpose added JS script for auto play and also was altered to use in other pages as a background.
-      The images are dynamically uploading from the DB (five each time) with a truncated discerption that takes the user to the item page when clicked.
+      The images are dynamically uploading five images from the DB with a short discerption that takes the user to the item page when clicked.
       The images are randomly picked each time the home page is visited. 
-    - A featured items post that is picked according to the number of likes. Once clicked it will take the user to the item page.
+    - A featured items post that is picked according to the number of likes. Once clicked it will take the user to the item page. The code checks the items with the highest number of likes and will add list of five items to the context. In the home page the first one is the featured post and the other four will appear in the side panel trending section. In other pages all the five items will b listed in the side panel trending section.
     - A list of the items posted each with an image tagged with the category and beneath a short truncated discerption and information regarding the manager who posted the item and the number of likes and comments and the date it was created.
-    The list is paginated so that four items are loaded for each page, [HTMX](https://htmx.org/) was used to implement lazy loading. When the user reaches the end of the page the next four items are loaded till the list finishes.
+    The list is paginated so that four items are loaded for each page, [HTMX](https://htmx.org/) was used to implement lazy loading. When the user reaches the end of the page the next four items are loaded till the list finishes. This part was really challenging, I encountered multiple problems while trying to make it work. The documentation and the online tutorial does not have sufficient information on how to do that, I had to check multiple resources and examples to figure it out. an example is that it was not mentioned any where that you need to use the {% load django_htmx %} in the html file. Another problem I encountered is that when the user reaches the last page a 404 error appears in the console because the view will try to load the next page that does not exist. to solve this problem I added the id of the last item as a parameter in the context and when the template reaches the last page it will not add the [HTMX](https://htmx.org/) attributes to the last item.
     - A side bar consists of three sections:
 
       - Category filter:
