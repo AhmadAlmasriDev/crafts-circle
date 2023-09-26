@@ -264,7 +264,8 @@ The website consist of nine pages and three form pages.
 All Pages on the website have:
 
   - A responsive navigation bar at the top which allows the user to navigate through the website. To the left of the website header is a logo. In the middle is the navigation bar with the links to the website pages (Home, About, Contact). to the right is a dynamic user menu the content change according to the user role. To allow a good user experience of the site. When viewing with mobile devices the navigation menu change to a bars menu list to the left side and the logo location changes to the middle. This was implemented to give the website a clean look. A hover animation for the links is also present.
-  - A script that disables the submit form button if exist, in order to prevent resubmitting errors. the script works all the time but there is one bug that I was not able to fix. And that is when the user tries to submit an empty form with place holder, the button is disabled. I documented this behavior in the [testing](testing.md) section.
+  - A script in [menu.js](./static/js/menu.js) that toggles the user menu and the bars menu and hides them when clicked outside them. 
+  - Another script in [menu.js](./static/js/menu.js) that disables the submit button when clicked, in order to prevent resubmitting errors. This one was tricky, since crispy forms handles the form fields validation.
 
     The user menu icon changes when the user is registered
     <details close>

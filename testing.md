@@ -680,10 +680,7 @@ Google Chrome on Windows, Edge
 
 ### Known Bugs
 
-| Known Bug No | Bug Issue | Plan to Resolve |
-| :--- | :--- | :--- |
-| 1 | when trying to submit empty form the submit button become disabled because of the JS implemented to prevent resubmitting | Try to find similar function in crispy forms or think of another way through JS|
-
+All of the bugs were fixed during the project.
 
 <br>
 
@@ -697,6 +694,7 @@ Google Chrome on Windows, Edge
 | 4 | un used tags appears in the tap sections when deleting an item, taggit library does not have the delete when not in use function or something similar | a code that checks if the tags for the deleted item are used anywhere and if not, deletes them. and for the items that was deleted from the admin panel a code that always checks if the tags are used or not and deletes them executes with the index page |
 | 5 | the footer comes up if the page is empty | used a vertical flexbox to keep the page divided into three sections header, main, and footer |
 | 6 | the HTMX attributes needed for the lazy loading to work give 400 error when on the last item of the list because it wants to load the next page | used a parameter in the context that passes the last items id and in the template is checked if the current item is the last item and not add these attributes if so|
+| 7 | when trying to submit empty form the submit button become disabled because of the JS implemented code to prevent accedental resubmissions  | Added form fields validation function to the code |
 
 
 Back to [README.md](README.md)
