@@ -36,6 +36,12 @@ class AddItemForm(forms.ModelForm):
             'tags',
             'status'
             )
+        labels = {
+            'slider_image':
+            'Slider image',
+            'listing_image':
+            'Listing image',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
